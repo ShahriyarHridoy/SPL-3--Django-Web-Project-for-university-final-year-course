@@ -1,0 +1,21 @@
+here we use command prompt(cmd) in windows for setup the project-
+
+first install virtual environment-
+	pip3 install virtualenv
+
+then create a virtual environment-
+	virtualenv env
+	.\env\Scripts\activate
+	pip3 install -r requirements.txt
+
+then goto the project folder-
+	cd project
+
+now migrate the database-
+	python manage.py makemigrations	
+	python manage.py migrate
+
+now we will start the application-
+	python manage.py runserver
+
+server will running on http://127.0.0.1:8000/

@@ -1,0 +1,84 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block styles %}
+<link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css" />
+
+{% load static %}  
+
+
+
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'users/css/auth.css' %}" type="text/css">
+<div class ="row">
+	<div class="col-md-6 mx-auto p-0">
+		<div class="card">
+            <div class="login-box">
+                <div class="login-snip">
+                    
+                    <div style="text-align: center;"><label style="text-align:center; font-size:22px;">Sign In</label></div>
+                    <div class="login-space">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="login-snip">
+                                <div class="group">
+                                    <label for="user" class="label">Username  <span class="required">   *</span></label>
+                                    {% comment %} <input id="username" name="username" type="text" class="form-control" placeholder="Create your Username" pattern="^([a-zA-Z]{2,} ?)+$" required="required"> {% endcomment %}
+                                    {{form.username}}
+                                    <span class="error-messg"></span>
+                                </div>
+                                <div class="group">
+                                    <label for="pass" class="label">Password <span class="required">  *</span></label>
+                                    {% comment %} <input id="password1" name="password1" type="password1" class="form-control" data-type="password" placeholder="Create your password" required="required">                                     {% endcomment %}
+                                    {{form.password}}
+                                    <span class="error-messg">
+                                </div>
+                                <div class="space"></div>
+                                <div class="group">
+                                    <input type="submit" class="button" value="Sign In">
+                                </div>
+                            
+                                <div class="hr"></div>
+                                <div class="foot" style="padding-top: 0px;">
+                                    <label for="tab-1">Don't have an account yet?</label>
+                                    <br>
+                                    <label><a style="background-color: darkslategrey; border: 50px;" href="{% url 'register' %}">Sign Up Today</a></label>
+                                    
+                                </div>
+                                
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% comment %} {% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <div class="container" style="margin-top: 30px;">
+    <form action="" method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+          <legend class="border-bottom mb-4" style="color: white;">Sign In Now</legend>
+          {{ form|crispy }}
+      </fieldset>
+      <div class="form-group" id="signup-button" style="margin-top: 30px;">
+          <button class="btn ">Sign In</button>
+      </div>
+      <div class="form-group">
+          <small class="text-muted ml-3" >Don't have an account yet? <a href="{% url 'register' %}">Sign Up Today</a></small>
+      </div>
+    </form>
+    </div>
+{% endblock %}</title> {% endcomment %}

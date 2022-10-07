@@ -1,0 +1,1270 @@
+{% extends 'users/base.html' %} {% load crispy_forms_tags %} {% block styles %}
+<link
+  href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css"
+  rel="stylesheet"
+  type="text/css"
+/>
+
+{% load static %}
+
+<link
+  rel="stylesheet"
+  href="{% static 'users/css/pims.css' %}"
+  type="text/css"
+/>
+
+{% endblock %} {% block scripts %}
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"
+></script>
+<!-- Fengyuan Chen's Datepicker -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css"
+  integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE="
+  crossorigin="anonymous"
+/>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js"
+  integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k="
+  crossorigin="anonymous"
+></script>
+
+{% load static %}
+<script src="{% static 'users/js/main.js'%}" type="text/javascript"></script>
+{% comment %} <script src="{% static 'users/js/formset.js'%}" type="text/javascript"></script> {% endcomment %}
+
+{% comment %} {% block content_plugins %}
+
+  <script type="text/javascript">
+
+    $(document).ready(function() { 
+
+      $("#add_more").on("click", function() {         
+          var form_idx = $("#id_form-TOTAL_FORMS").val();
+          $newform = $("#empty_form").clone(true,true)
+          $("#edu_info_list").append($newform.html().replace(/__prefix__/g, form_idx)); 
+          $("#id_form-TOTAL_FORMS").val(parseInt(form_idx)+1); 
+      });
+
+    });
+</script>
+
+{% endblock %} {% endcomment %}
+
+
+{% endblock %} {% block content %}
+<div class="mx-5 mb-3">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="col-md-12">
+        <h5
+          class="modal-title"
+          id="exampleModalLabel"
+          style="text-align: center; font-weight: bold"
+        >
+          Personal Management Information System (PMIS)
+        </h5>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div id="smartwizard">
+        <ul>
+          <li>
+            <a href="#step-1">Step 1<br /><small>Personal Info</small></a>
+          </li>
+          <li>
+            <a href="#step-2">Step 2<br /><small>Contract Info</small></a>
+          </li>
+          <li>
+            <a href="#step-3">Step 3<br /><small>Joining Info</small></a>
+          </li>
+          <li>
+            <a href="#step-4"
+              >Step 4<br /><small>Spouse and Children Info</small></a
+            >
+          </li>
+          <li>
+            <a href="#step-5">Step 5<br /><small>Education Info</small></a>
+          </li>
+          <li>
+            <a href="#step-6">Step 6<br /><small>Traning Info</small></a>
+          </li>
+          <li>
+            <a href="#step-7">Step 7<br /><small>Posting Info</small></a>
+          </li>
+          <li>
+            <a href="#step-8">Step 8<br /><small>Promotion Info</small></a>
+          </li>
+          <li>
+            <a href="#step-9">Step 9<br /><small>Confirm details</small></a>
+          </li>
+        </ul>
+
+        {% comment %}
+        <h4 class="text-right">Personal Information</h4>
+        {% endcomment %}
+
+        <div class="mt-4">
+          <div id="step-1">
+            <form
+              class="needs-validation"
+              method="post"
+              action="#step-2"
+              enctype="multipart/form-data"
+            >
+              {% csrf_token %}
+
+              <div class="row">
+                <div class="col-md-3 border-right">
+                  {% comment %}
+                  <div
+                    class="d-flex flex-column align-items-center text-center p-3 py-5"
+                  >
+                    <img
+                      class="rounded-circle mt-5"
+                      width="150px"
+                      src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+                    />
+                    <span class="font-weight-bold"> Test</span
+                    ><span class="text-black-50">test@gmail.com</span
+                    ><span> </span>
+                  </div>
+                  {% endcomment %}
+                  <div class="col-md-12">
+                    <label class="pims-labels"></label>
+                  </div>
+                  <br />
+                  <div class="container">
+                    <div class="picture-container">
+                      <div class="picture">
+                        <img
+                          src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+                          class="picture-src"
+                          id="profile-PicturePreview"
+                          name="profile-PicturePreview"
+                          title=""
+                        />
+                        <input
+                          type="file"
+                          id="pro_pic"
+                          name="pro_pic"
+                          class=""
+                        />
+                      </div>
+                      <h6 class="">Choose Picture</h6>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <label class="pims-labels"></label>
+                  </div>
+                  <br />
+
+                  <div class="container" >
+                    <div >
+                      {% comment %} <div class="signature"> {% endcomment %}
+                        <div class="image-area mt-4">
+                          <img
+                            id="signature-Preview"
+                            src="#"
+                            name= "signature-Preview"
+                            alt=""
+                            class="img-fluid rounded shadow-sm mx-auto d-block"
+                            style="max-height: 50px; width: 100px;"
+                          />
+                        </div>
+                    </div>
+                        <h6 class="">Choose your Signature</h6>
+                        <input
+                          type="file"
+                          id="signature_pic"
+                          name="signature_pic"
+                          class=""
+                        />
+                      {% comment %} </div> {% endcomment %}
+                      {% comment %} <h6 class="">Choose Picture</h6> {% endcomment %}
+                    
+                  </div>
+                  <br />
+                </div>
+
+                <div class="col-md-5 border-right">
+                  <div class="p-3 py-5">
+                    <div
+                      class="justify-content-between align-items-center mb-3"
+                    >
+                      <h4 class="text-center">Personal Information</h4>
+                    </div>
+                    <div class="row mt-2">
+                      <div class="col-md-4">
+                        <label class="pims-labels">Employee ID</label>
+                        <input
+                          type="text"
+                          name="employee_id"
+                          id="employee_id"
+                          class="form-control"
+                          placeholder="employee id"
+                          value=""
+                        />
+                      </div>
+                      <div class="col-md-8">
+                        <label class="pims-labels">Email</label
+                        ><input
+                          type="text"
+                          name="email"
+                          id="email"
+                          class="form-control"
+                          placeholder="{{user.email}}"
+                          value="{{user.email}}"
+                          readonly
+                        />
+                      </div>
+                      <div class="col-md-8">
+                        <label class="pims-labels">Employee Name</label
+                        ><input
+                          type="text"
+                          name="employee_name"
+                          id="employee_name"
+                          class="form-control"
+                          placeholder="employee name"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div class="row mt-3">
+                      <div class="col-md-6">
+                        <label class="pims-labels">Father's Name</label
+                        ><input
+                          type="text"
+                          name="father_name"
+                          id="father_name"
+                          class="form-control"
+                          value=""
+                          placeholder="father's name"
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="pims-labels">Mother's Name</label
+                        ><input
+                          type="text"
+                          name="mother_name"
+                          id="mother_name"
+                          class="form-control"
+                          value=""
+                          placeholder="mother's name"
+                        />
+                      </div>
+
+                      <div class="col-md-12 mt-3">
+                        <label class="mb-3 mr-1 pims-labels" for="gender"
+                          >Gender:
+                        </label>
+
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="gender"
+                          id="male"
+                          value="male"
+                          autocomplete="off"
+                          required
+                        />
+                        <label
+                          class="btn btn-sm btn-outline-secondary"
+                          for="male"
+                        >
+                          Male
+                        </label>
+
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="gender"
+                          id="female"
+                          value="female"
+                          autocomplete="off"
+                          required
+                        />
+                        <label
+                          class="btn btn-sm btn-outline-secondary"
+                          for="female"
+                        >
+                          Female
+                        </label>
+
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="gender"
+                          id="secret"
+                          value="secret"
+                          autocomplete="off"
+                          required
+                        />
+                        <label
+                          class="btn btn-sm btn-outline-secondary"
+                          for="secret"
+                        >
+                          Secret
+                        </label>
+                        <div class="valid-feedback mv-up">
+                          You selected a gender!
+                        </div>
+                        <div class="invalid-feedback mv-up">
+                          Please select a gender!
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <label class="pims-labels">Birth Date</label
+                        ><input
+                          id="datepicker"
+                          name="birth_date"
+                          class="form-control"
+                          placeholder="select your birth date"
+                          value=""
+                        />
+                      </div>
+
+                      <div class="col-md-12 mt-3">
+                        <label class="mb-3 mr-1 pims-labels" for="blood_group"
+                          >Blood Group:
+                        </label>
+
+                        <select
+                          class="btn btn-sm btn-outline-secondary"
+                          name="blood_group"
+                          id="blood_group"
+                          autocomplete="off"
+                          required
+                        >
+                          <option selected>None</option>
+                          <option value="AB+">AB+</option>
+                          <option value="AB-">AB-</option>
+                          <option value="A+">A+</option>
+                          <option value="A-">A-</option>
+                          <option value="B+">B+</option>
+                          <option value="B-">B-</option>
+                          <option value="O+">O+</option>
+                          <option value="O-">O-</option>
+                        </select>
+
+                        <div class="valid-feedback mv-up">
+                          You selected your Blood Broup!
+                        </div>
+                        <div class="invalid-feedback mv-up">
+                          Please select a Blood Broup!
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <label class="pims-labels">Home District</label
+                        ><input
+                          type="text"
+                          name="home_district"
+                          id="home_district"
+                          class="form-control"
+                          placeholder="home district"
+                          value=""
+                        />
+                      </div>
+                      <div class="col-md-12">
+                        <label class="pims-labels">National ID No</label
+                        ><input
+                          type="number"
+                          name="national_ID"
+                          id="national_ID"
+                          class="form-control"
+                          placeholder="national ID"
+                          value=""
+                        />
+                      </div>
+                      <div class="col-md-12">
+                        <label class="pims-labels">Driving Licence No</label
+                        ><input
+                          type="number"
+                          name="driving_licence"
+                          id="driving_licence"
+                          class="form-control"
+                          placeholder="driving licence"
+                          value=""
+                        />
+                      </div>
+                      <div class="col-md-12">
+                        <label class="pims-labels">Passport No</label
+                        ><input
+                          type="text"
+                          name="passport"
+                          id="passport"
+                          class="form-control"
+                          placeholder="passport no"
+                          value=""
+                        />
+                      </div>
+                      <div class="col-md-12">
+                        <label class="pims-labels">GPF/CPF No</label
+                        ><input
+                          type="number"
+                          name="gpf_cpf"
+                          id="gpf_cpf"
+                          class="form-control"
+                          placeholder="GPF/CPF No"
+                          value=""
+                        />
+                      </div>
+                      <div class="col-md-12">
+                        <label class="pims-labels"
+                          >Field of Specialization</label
+                        ><textarea
+                          name="specialization"
+                          id="specialization"
+                          rows="3"
+                          class="form-control"
+                          placeholder="enter details information"
+                          value=""
+                        >
+                        </textarea>
+                      </div>
+
+                      <div class="col-md-12">
+                        <label class="pims-labels">Cell No</label
+                        ><input
+                          type="number"
+                          name="phone"
+                          id="phone"
+                          class="form-control"
+                          placeholder="01*********"
+                          value=""
+                        />
+                      </div>
+
+                      <div class="col-md-12 mt-3">
+                        <label class="mb-3 mr-1 pims-labels" for="religion"
+                          >Religion:
+                        </label>
+
+                        <select
+                          class="btn btn-sm btn-outline-secondary"
+                          name="religion"
+                          id="religion"
+                          autocomplete="off"
+                          required
+                        >
+                          <option selected>None</option>
+                          <option value="islam">Islam</option>
+                          <option value="hinduism">Hinduism</option>
+                          <option value="buddhism">Buddhism</option>
+                          <option value="christianity">Christianity</option>
+                          <option value="sikhism">Sikhism</option>
+                          <option value="christians">Christians</option>
+                        </select>
+
+                        <div class="valid-feedback mv-up">
+                          You selected your Blood Broup!
+                        </div>
+                        <div class="invalid-feedback mv-up">
+                          Please select a Blood Broup!
+                        </div>
+                      </div>
+
+                      {% comment %}
+                      <div class="col-md-12">
+                        <label class="pims-labels">Birth Date</label
+                        ><input
+                          id="datepicker"
+                          name="birth_date"
+                          class="form-control"
+                          placeholder="select your birth date"
+                          value=""
+                        />
+                      </div>
+                      {% endcomment %}
+
+                      <div class="col-md-12 mt-3">
+                        <label
+                          class="mb-3 mr-1 pims-labels"
+                          for="marital_status"
+                          >Maritial Status
+                        </label>
+
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="marital_status"
+                          id="married"
+                          value="Married"
+                          autocomplete="off"
+                          required
+                        />
+                        <label
+                          class="btn btn-sm btn-outline-secondary"
+                          for="married"
+                        >
+                          Married
+                        </label>
+
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="marital_status"
+                          id="unmarried"
+                          value="Unmarried"
+                          autocomplete="off"
+                          required
+                        />
+                        <label
+                          class="btn btn-sm btn-outline-secondary"
+                          for="unmarried"
+                        >
+                          Unmarried
+                        </label>
+
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="marital_status"
+                          id="divorced"
+                          value="Divorced"
+                          autocomplete="off"
+                          required
+                        />
+                        <label
+                          class="btn btn-sm btn-outline-secondary"
+                          for="divorced"
+                        >
+                          Divorced
+                        </label>
+                        <div class="valid-feedback mv-up">
+                          You selected a status!
+                        </div>
+                        <div class="invalid-feedback mv-up">
+                          Please select a Maritial Status!
+                        </div>
+                      </div>
+                    </div>
+
+                    {% comment %}
+                    <div class="row mt-3">
+                      <div class="col-md-6">
+                        <label class="pims-labels">Country</label
+                        ><input
+                          type="text"
+                          class="form-control"
+                          placeholder="country"
+                          value=""
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="pims-labels">State/Region</label
+                        ><input
+                          type="text"
+                          class="form-control"
+                          value=""
+                          placeholder="state"
+                        />
+                      </div>
+                    </div>
+                    {% endcomment %}
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="p-3 py-5">
+                    <div class="col-md-12">
+                      <label class="pims-labels"></label>
+                    </div>
+                    <br />
+                    <div class="col-md-12">
+                      <label class="pims-labels">Unit</label
+                      ><input
+                        type="text"
+                        id="e_unit"
+                        name="e_unit"
+                        class="form-control"
+                        placeholder="unit"
+                        value=""
+                      />
+                    </div>
+                    <div class="col-md-12">
+                      <label class="pims-labels">Division</label
+                      ><input
+                        type="text"
+                        id="e_division"
+                        name="e_division"
+                        class="form-control"
+                        placeholder="division"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-5 text-center">
+                <button
+                  class="btn btn-primary profile-button"
+                  name="personal_info_button"
+                  type="submit"
+                >
+                  Save Profile
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div id="step-2">
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <div class="justify-content-between align-items-center mb-3">
+                  <h4 class="text-center" style="background-color: darkgrey">
+                    Contract Information
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <form class="needs-validation" method="post" action="#step-3">
+              {% csrf_token %}
+
+              <div class="row">
+                <div class="col-md-4">
+                  <p class="text-center">Present Address</p>
+                </div>
+                <div class="col-md-4">
+                  <p class="text-center">Parmanent Address</p>
+                </div>
+                <div class="col-md-4">
+                  <p class="text-center">Emergency Contract</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <input
+                    id="present_address"
+                    name="present_address"
+                    type="text"
+                    class="form-control"
+                    placeholder="Address"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <input
+                    id="parmanent_address"
+                    name="parmanent_address"
+                    type="text"
+                    class="form-control"
+                    placeholder="Address"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <input
+                    type="text"
+                    id="emergency_name"
+                    name="emergency_name"
+                    class="form-control"
+                    placeholder="Name"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-4">
+                  <input
+                    id="present_post_office"
+                    name="present_post_office"
+                    type="text"
+                    class="form-control"
+                    placeholder="Post Office"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <input
+                    id="parmanent_post_office"
+                    name="parmanent_post_office"
+                    type="text"
+                    class="form-control"
+                    placeholder="Post Office"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <input
+                    id="emergency_relation"
+                    name="emergency_relation"
+                    type="text"
+                    class="form-control"
+                    placeholder="Relation"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-4">
+                  <input
+                    id="present_police_station"
+                    name="present_police_station"
+                    type="text"
+                    class="form-control"
+                    placeholder="Police Station"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <input
+                    id="parmanent_police_station"
+                    name="parmanent_police_station"
+                    type="text"
+                    class="form-control"
+                    placeholder="Police Station"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <input
+                    id="emergency_address"
+                    name="emergency_address"
+                    type="text"
+                    class="form-control"
+                    placeholder="Address"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-4">
+                  <input
+                    id="present_district"
+                    name="present_district"
+                    type="text"
+                    class="form-control"
+                    placeholder="District"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <input
+                    id="parmanent_district"
+                    name="parmanent_district"
+                    type="text"
+                    class="form-control"
+                    placeholder="District"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <input
+                    id="emergency_phone"
+                    name="emergency_phone"
+                    type="text"
+                    class="form-control"
+                    placeholder="Phone"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-4">
+                  <input
+                    id="present_upazila"
+                    name="present_upazila"
+                    type="text"
+                    class="form-control"
+                    placeholder="Upazila"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <input
+                    id="parmanent_upazila"
+                    name="parmanent_upazila"
+                    type="text"
+                    class="form-control"
+                    placeholder="Upazila"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <input
+                    id="emergency_cell_no"
+                    name="emergency_cell_no"
+                    type="number"
+                    class="form-control"
+                    placeholder="Cell No"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-4">
+                  <input
+                    id="present_tel_number"
+                    name="present_tel_number"
+                    type="number"
+                    class="form-control"
+                    placeholder="Telephone Number"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <input
+                    id="parmanent_tel_number"
+                    name="parmanent_tel_number"
+                    type="number"
+                    class="form-control"
+                    placeholder="Telephone Number"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <input
+                    id="emergency_email"
+                    name="emergency_email"
+                    type="text"
+                    class="form-control"
+                    placeholder="Email"
+                    required
+                  />
+                </div>
+              </div>
+              {% comment %}
+              <div class="mt-5 text-center">
+                <button class="btn btn-primary address-button" type="button">
+                  Save Details
+                </button>
+              </div>
+              {% endcomment %}
+              <div class="mt-5 text-center">
+                <button
+                  class="btn btn-primary profile-button"
+                  name="contract_info_button"
+                  type="submit"
+                >
+                  Save Contrct Info
+                </button>
+              </div>
+            </form>
+            <div class="row">
+              <p class="text-center"></p>
+            </div>
+          </div>
+          <div id="step-3" class="">
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <div class="justify-content-between align-items-center mb-3">
+                  <h4 class="text-center" style="background-color: darkgrey">
+                    Joining Information
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <form class="needs-validation" method="post" action="#step-4">
+              {% csrf_token %}
+
+              <div class="row my-10" style="height: 30px"></div>
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
+                  <p class="text-center">Rank \ Class</p>
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="rank"
+                    name="rank"
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter Rank \ Class"
+                    required
+                  />
+                </div>
+                <div class="col-md-2">
+                  <p class="text-center">Grade</p>
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="grade"
+                    name="grade"
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter Grade"
+                    required
+                  />
+                </div>
+                <div class="col-md-1"></div>
+              </div>
+
+              <div class="row my-10" style="height: 10px"></div>
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
+                  <p class="text-center">Post/ Designation</p>
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="designation"
+                    name="designation"
+                    type="text"
+                    class="form-control"
+                    placeholder="Post/ Designation"
+                    required
+                  />
+                </div>
+                <div class="col-md-2">
+                  <p class="text-center">Batch</p>
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="batch"
+                    name="batch"
+                    type="text"
+                    class="form-control"
+                    placeholder="Batch"
+                    required
+                  />
+                </div>
+                <div class="col-md-1"></div>
+              </div>
+
+              <div class="row my-10" style="height: 10px"></div>
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
+                  <p class="text-center">WorkStation</p>
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="workStation"
+                    name="workStation"
+                    type="text"
+                    class="form-control"
+                    placeholder="WorkStation/ Posting Place"
+                    required
+                  />
+                </div>
+                <div class="col-md-2">
+                  <p class="text-center">Joining Date</p>
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="datepicker1"
+                    name="joining_date"
+                    class="form-control"
+                    placeholder="your Joining Date"
+                    value=""
+                    required
+                  />
+                </div>
+                <div class="col-md-1"></div>
+              </div>
+
+              <div class="row my-10" style="height: 10px"></div>
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
+                  <p class="text-center">Office Name</p>
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="office_name"
+                    name="office_name"
+                    type="text"
+                    class="form-control"
+                    placeholder="Office Name"
+                    required
+                  />
+                </div>
+                <div class="col-md-2">
+                  <p class="text-center">PRL Date</p>
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="datepicker2"
+                    name="prl_date"
+                    class="form-control"
+                    placeholder="Select PRL date"
+                    value=""
+                    required
+                  />
+                </div>
+                <div class="col-md-1"></div>
+              </div>
+
+              <div class="row my-10" style="height: 10px"></div>
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
+                  <p class="text-center">Department</p>
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="department"
+                    name="department"
+                    type="text"
+                    class="form-control"
+                    placeholder="Department"
+                    required
+                  />
+                </div>
+                <div class="col-md-2">
+                  <p class="text-center">Order No & Date</p>
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="order_no_date"
+                    name="order_no_date"
+                    type="text"
+                    class="form-control"
+                    placeholder="Order No & Date"
+                    required
+                  />
+                </div>
+                <div class="col-md-1"></div>
+              </div>
+
+              <div class="row my-10" style="height: 10px"></div>
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
+                  <p class="text-center">District</p>
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="district"
+                    name="district"
+                    type="text"
+                    class="form-control"
+                    placeholder="District"
+                    required
+                  />
+                </div>
+                <div class="col-md-2">
+                  <p class="text-center">Confirmation Date</p>
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="datepicker3"
+                    name="conf_date"
+                    class="form-control"
+                    placeholder="Select Confirmation Date"
+                    value=""
+                    required
+                  />
+                </div>
+                <div class="col-md-1"></div>
+              </div>
+
+              <div class="row my-10" style="height: 10px"></div>
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
+                  <p class="text-center">Upazila</p>
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="upazila"
+                    name="upazila"
+                    type="text"
+                    class="form-control"
+                    placeholder="Upazila"
+                    required
+                  />
+                </div>
+                <div class="col-md-2">
+                  <p class="text-center">Gazatted Date</p>
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="datepicker4"
+                    name="gazatted_date"
+                    class="form-control"
+                    placeholder="Select Gazatted Date"
+                    value=""
+                    required
+                  />
+                </div>
+                <div class="col-md-1"></div>
+              </div>
+
+              <div class="row my-10" style="height: 10px"></div>
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
+                  <p class="text-center" for="job_nature">Job Nature</p>
+                </div>
+                <div class="col-md-3">
+                  <select
+                    class="btn btn-sm btn-outline-secondary"
+                    name="job_nature"
+                    id="job_nature"
+                    autocomplete="off"
+                    required
+                  >
+                    <option selected>None</option>
+                    <option value="Revenue">Revenue</option>
+                    <option value="Development">Development</option>
+                    <option value="Other">Other</option>
+                  </select>
+
+                  <div class="valid-feedback mv-up">
+                    You selected your Job Nature!
+                  </div>
+                  <div class="invalid-feedback mv-up">
+                    Please select a Job Nature!
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <p class="text-center">Endorsement Date</p>
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="datepicker5"
+                    name="edndorsement_date"
+                    type="text"
+                    class="form-control"
+                    placeholder="Select Endorsement Date"
+                    value=""
+                    required
+                  />
+                </div>
+                <div class="col-md-1"></div>
+              </div>
+
+              {% comment %}
+              <div class="mt-5 text-center">
+                <button class="btn btn-primary address-button" type="button">
+                  Save Details
+                </button>
+              </div>
+              {% endcomment %}
+              <div class="mt-5 text-center">
+                <button
+                  class="btn btn-primary profile-button"
+                  name="joining_info_button"
+                  type="submit"
+                >
+                  Save Joining Information
+                </button>
+              </div>
+            </form>
+            <div class="row">
+              <p class="text-center"></p>
+            </div>
+          </div>
+          <div id="step-4" class="">
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <div class="justify-content-between align-items-center mb-3">
+                  <h4 class="text-center" style="background-color: darkgrey">
+                    Education Information
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <form class="needs-validation" method="POST" action="#step-5" enctype="multipart/form-data">
+              {% csrf_token %}
+              <table>
+                <div class="container mt-3">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <p class="text-center">Degree</p>
+                    </div>
+                    <div class="col-md-2">
+                      <p class="text-center">Group/Department</p>
+                    </div>
+                    <div class="col-md-2">
+                      <p class="text-center">Board/University</p>
+                    </div>
+                    <div class="col-md-2">
+                      <p class="text-center">Passing year</p>
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <p class="text-center">Result </br> (Division/GPA/CGPA)</p>                  
+                    </div>
+                    <div class="col-md-2">
+                      <p class="text-center">Distinction</p>
+                    </div>
+                    <div class="col-md-2">
+                      <p class="text-center"></p>
+                    </div>
+                  </div>
+                  <div >
+                    {{ formset.management_form }}
+                      {% for form in formset %}
+                        
+                            <div class="row mb-3" >
+                              {% crispy form %}
+                              {{form.non_field_errors}}
+                              {{form.errors}}
+                          </div>
+
+                    {% endfor %} 
+                    {% comment %} <div class="row mt-2 hidden" id="empty-form" style="display:none">
+                      
+                      {% crispy formset.empty_form %}
+                    </div> {% endcomment %}
+                    {% comment %} <button class="btn btn-success mt-4" id='add_more' type='button'>Add more Information</button> {% endcomment %}          
+                  </div>
+                </div>
+              </table>
+
+              <div class="mt-5 text-center">
+                <button
+                  class="btn btn-primary profile-button"
+                  name="education_info_button"
+                  type="submit"
+                >
+                  Save Contrct Info
+                </button>
+              </div>
+            </form>
+            <div class="row">
+              <p class="text-center"></p>
+            </div>
+          </div>
+
+          <div id="step-5" class="">
+            <div class="row">
+              <div class="col-md-12">
+                <span
+                  >Thanks For submitting your details. We will send you a
+                  confirmation email.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div id="step-6" class="">
+            <div class="row">
+              <div class="col-md-12">
+                <span
+                  >Thanks For submitting your details. We will send you a
+                  confirmation email.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div id="step-9" class="">
+            <div class="row">
+              <div class="col-md-12">
+                <span
+                  >Thanks For submitting your details. We will send you a
+                  confirmation email.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

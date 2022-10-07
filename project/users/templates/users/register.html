@@ -1,0 +1,208 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block styles %}
+<link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css" />
+
+{% load static %}  
+
+
+
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'users/css/auth.css' %}" type="text/css">
+<div class ="row">
+	<div class="col-md-6 mx-auto p-0">
+		<div class="card">
+            <div class="login-box">
+                <div class="login-snip">
+                    
+                    <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab" style="text-align:center;">Sign Up</label>
+                    <div class="login-space">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="sign-up-form">
+                                <div class="group">
+                                    <label for="user" class="label">Username  <span class="required">   *</span></label>
+                                    {% comment %} <input id="username" name="username" type="text" class="form-control" placeholder="Create your Username" pattern="^([a-zA-Z]{2,} ?)+$" required="required"> {% endcomment %}
+                                    {{form.username}}
+                                    <span class="error-messg"></span>
+                                </div>
+                                <div class="group">
+                                    <label for="pass" class="label">Password <span class="required">  *</span></label>
+                                    {% comment %} <input id="password1" name="password1" type="password1" class="form-control" data-type="password" placeholder="Create your password" required="required">                                     {% endcomment %}
+                                    {{form.password1}}
+                                    <span class="error-messg">
+                                </div>
+                                <div class="group">
+                                    <label for="pass" class="label">Repeat Password <span class="required">  *</span></label>
+                                    {% comment %} <input id="password2" name="password2" type="password2" class="form-control" data-type="password" placeholder="Repeat your password" required="required"> {% endcomment %}
+                                    {{form.password2}}
+                                    <span class="error-messg">
+                                </div>
+                                <div class="group">
+                                    <label for="pass" class="label">Email Address  <span class="required">   *</label>
+                                    {% comment %} <input id="email" name="email" type="text" class="form-control" placeholder="Enter your email address" required="required"> {% endcomment %}
+                                    {{form.email}}
+                                    <span class="error-messg"></span>
+                                </div>
+                                <div class="space"></div>
+                                <div class="group">
+                                    <input type="submit" class="button" value="Sign Up">
+                                </div>
+                            
+                                <div class="hr"></div>
+                                <div class="foot" style="padding-top: 0px;">
+                                    <label for="tab-1">Already Member?</label>
+                                    
+                                </div>
+                                <div class="foot">
+                                    
+                                    <label><a style="background-color: darkslategrey; border: 50px;" href="{% url 'login' %}">Sign In</a></label>
+                                </div>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>
+{% endblock %} 
+
+
+
+{% comment %} {% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+    
+    <div class="container" style="margin-top: 30px;">
+    <form action="" method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+          <legend class="border-bottom mb-4" style="color: white;">Join Now</legend>
+           {{ form|crispy }}
+      </fieldset>
+      <div class="form-group" id="signup-button">
+          <button class="btn ">Sign Up</button>
+      </div>
+      <div class="form-group">
+          <small class="text-muted ml-3" >Already have an account? <a href="{% url 'login' %}">Sign In</a></small>
+      </div>
+    </form>
+    </div>
+{% endblock %} {% endcomment %}
+
+
+{% comment %} <link rel="stylesheet" href="{% static 'users/css/auth.css' %}">
+    <div class="container" style="margin-top: 30px;">
+    <form action="" method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+          <legend class="border-bottom mb-4" style="color: white;">Join Now</legend>
+          {{ form|crispy }}
+      </fieldset>
+      <div class="form-group" id="signup-button">
+          <button class="btn ">Sign Up</button>
+      </div>
+      <div class="form-group">
+          <small class="text-muted ml-3" >Already have an account? <a href="{% url 'login' %}">Sign In</a></small>
+      </div>
+    </form>
+    </div> {% endcomment %}
+
+{% comment %} 
+    {% extends 'users/base.html' %}
+    {% load crispy_forms_tags %}
+    {% load static %}
+    {% block styles %}
+    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css" />
+    
+    {% load static %}  
+    
+    
+    
+    {% endblock %}
+    
+    {% block content %}
+    <link rel="stylesheet" href="{% static 'users/css/auth.css' %}" type="text/css">
+    <div class ="row">
+        <div class="col-md-6 mx-auto p-0">
+            <div class="card">
+                <div class="login-box">
+                    <div class="login-snip">
+                        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Login</label>
+                        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+                        <div class="login-space">
+                            <form action="" method="post">
+                            {% csrf_token %}
+                                <div class="login">
+                                    <div class="form-group">
+                                        <label for="user" class="label">Username  <span class="required">   *</span></label>
+                                        <input id="username" name="username" type="text" class="input" placeholder="Your Username" pattern="^([a-zA-Z]{2,} ?)+$" required="required">
+                                        <span class="error-messg"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pass" class="label">Password <span class="required">  *</span></label>
+                                        <input id="password1" name="password1" type="password" class="input" data-type="password" placeholder="Your password" required="required">                                    
+                                        <span class="error-messg">
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="check" type="checkbox" class="check" checked>
+                                        <label for="check"><span class="icon"></span> Keep me Signed in</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" name="sign-in" class="button" value="Sign In">
+                                    </div>
+                                    <div class="hr"></div>
+                                    <div class="foot">
+                                        <a href="#">Forgot Password?</a>
+                                    </div>
+                                </div>
+                            </form>
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <div class="sign-up-form">
+                                    <div class="group">
+                                        <label for="user" class="label">Username  <span class="required">   *</span></label>
+                                        <input id="username" name="username" type="text" class="input" placeholder="Create your Username" pattern="^([a-zA-Z]{2,} ?)+$" required="required">
+                                        <span class="error-messg"></span>
+                                    </div>
+                                    <div class="group">
+                                        <label for="pass" class="label">Password <span class="required">  *</span></label>
+                                        <input id="password1" name="password1" type="password1" class="input" data-type="password" placeholder="Create your password" required="required">                                    
+                                        <span class="error-messg">
+                                    </div>
+                                    <div class="group">
+                                        <label for="pass" class="label">Repeat Password <span class="required">  *</span></label>
+                                        <input id="password2" name="password2" type="password2" class="input" data-type="password" placeholder="Repeat your password" required="required">
+                                        <span class="error-messg">
+                                    </div>
+                                    <div class="group">
+                                        <label for="pass" class="label">Email Address  <span class="required">   *</label>
+                                        <input id="email" name="email" type="text" class="input" placeholder="Enter your email address" required="required">
+                                        <span class="error-messg"></span>
+                                    </div>
+                                    <div class="group">
+                                        <input type="submit" class="button" value="Sign Up">
+                                    </div>
+                                
+                                    <div class="hr"></div>
+                                    <div class="foot">
+                                        <label for="tab-1">Already Member?</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </div>
+    {% endblock %} {% endcomment %}

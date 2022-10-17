@@ -1,8 +1,9 @@
 import email
 from pyexpat import model
+from sys import prefix
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from .forms import EducationInformationForm, UserRegisterForm
+from .forms import ChildrenInformationForm, EducationInformationForm, SpouseInformationForm, UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from users.models import *
@@ -23,6 +24,7 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout 
 from django.views import View 
 from django.forms import formset_factory
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
 
 
@@ -140,11 +142,17 @@ def profile(request):
 
 @login_required()
 def add_profile(request):
-    educationInfo = EducationInformationForm(request.POST or None)
-    educationInfo1 = EducationInformationForm()
-    EducationInfoFormset = formset_factory(EducationInformationForm, extra=5)
-    formset = EducationInfoFormset(request.POST or None)
-    context={"formset": formset, "edu_Info_form": educationInfo}
+    
+    EducationInfoFormset = formset_factory(EducationInformationForm)
+    edu_formset = EducationInfoFormset(request.POST if "education_info_button" in request.POST else None, prefix="education")
+
+    SpouseInfoFormset = formset_factory(SpouseInformationForm)
+    spouse_formset = SpouseInfoFormset(request.POST if "spouse_info_button" in request.POST else None, prefix="spouse")
+
+    ChildrenInfoFormset = formset_factory(ChildrenInformationForm)
+    children_formset = ChildrenInfoFormset(request.POST if "child_info_button" in request.POST else None, prefix="children")
+
+    context={"edu_formset": edu_formset, "spouse_formset": spouse_formset, "children_formset": children_formset, }
 
     if request.method == "POST":
 
@@ -169,6 +177,7 @@ def add_profile(request):
             print(birth_date)
 
             e_personal_info_model = Personal_info(
+                user = request.user,
                 e_unit = request.POST.get("e_unit"),
                 e_division = request.POST.get("e_division"),
                 employee_id=  request.POST.get("employee_id"),
@@ -198,6 +207,7 @@ def add_profile(request):
             print(request.POST.get("present_address"))
             
             e_contract_info_model = Contract_info(
+                user = request.user,
                 present_address = request.POST.get("present_address"),
                 parmanent_address = request.POST.get("parmanent_address"),
                 emergency_name = request.POST.get("emergency_name"),
@@ -231,6 +241,7 @@ def add_profile(request):
             print(joining_date)
 
             e_joining_info_model = Joining_info(
+                user = request.user,
                 rank= request.POST.get("rank"),
                 grade =  request.POST.get("grade"),
                 designation=  request.POST.get("designation"),
@@ -253,15 +264,18 @@ def add_profile(request):
 
         elif "education_info_button" in request.POST:
             # print(formset)
-            if (formset.is_valid()):
+            if (edu_formset.is_valid()):
                 # educationInfo = EducationInformationForm(request.POST)
-                if formset.is_valid() :
-                    for form in formset:
-                        print(form.cleaned_data.get("degree"))
-                        print("####################")
+                if edu_formset.is_valid() :
+                    # edu_len=len(edu_formset)
+                    # print(edu_len)
+                    # test= False
+                    for form in edu_formset:
+                    
                         if form.cleaned_data.get("degree") and form.cleaned_data.get("r_department") and form.cleaned_data.get("board_university") and form.cleaned_data.get("passing_year") and form.cleaned_data.get("result") and form.cleaned_data.get("distinction"):
                             # form.save()
                             EducationInformation(
+                                user = request.user,
                                 degree= form.cleaned_data.get("degree"),
                                 r_department= form.cleaned_data.get("r_department"),
                                 board_university= form.cleaned_data.get("board_university"),
@@ -271,9 +285,58 @@ def add_profile(request):
                             ).save()
                             messages.success(request, f'your Education Information was added successfully')
 
+        elif "spouse_info_button" in request.POST:
+            # print(formset)
+            if (spouse_formset.is_valid()):
+                # educationInfo = EducationInformationForm(request.POST)
+                for form1 in spouse_formset:
+                    if form1.cleaned_data.get("spouse_name"):
+                        # form.save()
+                        SpouseInformation(
+                            user = request.user,
+                            spouse_name= form1.cleaned_data.get("spouse_name"),
+                            spouse_home_district= form1.cleaned_data.get("spouse_home_district"),
+                            spouse_occupation= form1.cleaned_data.get("spouse_occupation"),
+                            spouse_designation= form1.cleaned_data.get("spouse_designation"),
+                            spouse_org_name= form1.cleaned_data.get("spouse_org_name"),
+                            spouse_org_address= form1.cleaned_data.get("spouse_org_address"),                                spouse_cell_no= form1.cleaned_data.get("spouse_cell_no"),
+                        ).save()
+                        messages.success(request, f'Your Spouse Information was added successfully')
+                   
+        elif "child_info_button" in request.POST:
+            
+            if (children_formset.is_valid()):
+                # educationInfo = EducationInformationForm(request.POST)   
+                print(children_formset)
+                for form2 in children_formset:
+                    print("#########################################")
+                    # print(form)
+                    print(form2.cleaned_data.get("clild_gerder"))
+                    print(form2.cleaned_data.get("clild_birthDate"))
+                    if form2.cleaned_data.get("clild_name") and form2.cleaned_data.get("clild_gerder") and form2.cleaned_data.get("clild_birthDate") and form2.cleaned_data.get("clild_BirthPlace"):
+                        # form.save()
+                        # child_birth_date = datetime.datetime.strptime(form2.cleaned_data.get("clild_birthDate"), "%m/%d/%Y").strftime("%Y-%m-%d")
+                        print("&&&&&&&&&&&&&&&&&&&&&&&")
+                        ChildrenInformation(
+                            user = request.user,
+                            clild_name= form2.cleaned_data.get("clild_name"),
+                            clild_gerder= form2.cleaned_data.get("clild_gerder"),
+                            # clild_birthDate= child_birth_date,
+                            clild_birthDate=form2.cleaned_data.get("clild_birthDate"),
+                            clild_BirthPlace= form2.cleaned_data.get("clild_BirthPlace"),
+                            clild_Remarks= form2.cleaned_data.get("clild_Remarks"),
+                                
+                        ).save()
+                        messages.success(request, f'Your Children Information was added successfully')
+
     elif request.method == "Get":
         # formset = EducationInformationForm(queryset=EducationInformation.objects.none())
-        formset = EducationInformationForm(request.GET or None)
+        # edu_formset = EducationInformationForm(request.GET or None)
+        # spouse_formset = SpouseInformationForm(request.GET or None)
+        # children_formset = ChildrenInformationForm (request.GET or None)
+        edu_formset = EducationInfoFormset(request.GET, prefix="education")
+        spouse_formset = SpouseInfoFormset(request.GET, prefix="spouse")
+        children_formset = ChildrenInfoFormset(request.GET, prefix="children")
 
 
-    return render(request, 'users/add-profile.html', context )
+    return render(request, 'users/add-profile.html', context)

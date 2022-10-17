@@ -1,5 +1,7 @@
 from dataclasses import fields
 from logging import PlaceHolder
+from multiprocessing.sharedctypes import Value
+from random import choices
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm, UsernameField
@@ -45,6 +47,98 @@ class EducationInformationForm(forms.ModelForm):
                 Div("passing_year",  css_class='col-md-2'),
                 Div("result",  css_class='col-md-2'),
                 Div("distinction",  css_class='col-md-2'),
+            css_class="row"
+            )
+        )
+
+class SpouseInformationForm(forms.ModelForm):
+    spouse_name= forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Spouse Name'}), label="", required=False)
+    spouse_home_district = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Home District"}), label="", required=False)
+    spouse_occupation= forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Occupation"}), label="", required=False)
+    spouse_designation= forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Designation"}), label="", required=False)
+    spouse_org_name= forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Org Name"}), label="", required=False)
+    spouse_org_address= forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Org Address"}), label="", required=False)
+    spouse_cell_no= forms.CharField(widget=forms.NumberInput(attrs={'placeholder': "Cell No"}), label="", required=False)
+    
+    class Meta:
+        model = SpouseInformation
+        fields= ["spouse_name", "spouse_home_district", "spouse_occupation", "spouse_designation", "spouse_org_name", "spouse_org_address","spouse_cell_no"]
+        labels ={
+            "spouse_name": 'Spouse Name',
+            "spouse_home_district": "Home District",
+            "spouse_occupation": "Occupation",
+            "spouse_designation":"Designation",
+            "spouse_org_name": "Org Name",
+            "spouse_org_address": "Org Address",
+            "spouse_cell_no": "Cell No",
+        }
+
+    def __init__(self, *args, **kwargs): 
+        super(SpouseInformationForm, self).__init__(*args, **kwargs) 
+
+        self.helper= FormHelper()
+        self.helper.form_id= "id-entryfprm"
+        self.helper.form_class= "form-inline"
+        self.helper.layout= Layout(
+            Div(
+                Div("spouse_name", css_class='col-6 col-lg-3'),
+                Div("spouse_home_district", css_class='col-6 col-md-3'),
+                Div("spouse_occupation",  css_class='col-5 col-md-3'),
+                Div("spouse_designation",  css_class='col-md-3'),
+                # Div("spouse_org_name",  css_class='col-md-3'),
+                # Div("spouse_org_address",  css_class='col-md-3'),
+                # Div("spouse_cell_no", css_class='col-md-3'),
+            css_class="row"
+            ),
+            Div(
+                Div("spouse_org_name",  css_class='col-md-3'),
+                Div("spouse_org_address",  css_class='col-md-3'),
+                Div("spouse_cell_no", css_class='col-md-3'),
+            css_class="row mt-3"
+            )
+        )
+
+class ChildrenInformationForm(forms.ModelForm):
+    C_Gender = (
+        ("",'Choose gender'),
+        ("Male", "Male"),
+        ("Female", "Female"),
+        ("others", "Others")
+    )
+
+    clild_name= forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Child Name'}), label='Child Name', required=False)
+    clild_gerder = forms.ChoiceField(choices= C_Gender, label="Gender", required=False)
+    clild_birthDate= forms.DateField(input_formats=settings.DATE_INPUT_FORMATS, widget=forms.widgets.DateInput(format='%Y%m%d', attrs={'placeholder': "Select BirthDate", 'type': "date"}), label="BirthDate", required=False, )
+    clild_BirthPlace= forms.CharField(widget=forms.TextInput(attrs={'placeholder': "(Country/District)"}), label="BirthPlace", required=False)
+    clild_Remarks= forms.CharField(widget=forms.TextInput(attrs={'placeholder': "enter your remarks"}), label="Remarks", required=False)
+
+    class Meta:
+        model = ChildrenInformation
+        fields= ["clild_name", "clild_gerder", "clild_birthDate", "clild_BirthPlace", "clild_Remarks", ]
+        labels ={
+            "clild_name": 'Child Name',
+            "clild_gerder": "Gender",
+            "clild_birthDate": "Select BirthDate",
+            "clild_BirthPlace":"BirthPlace (Country/District)",
+            "clild_Remarks": "Remarks",
+            
+        }
+
+    def __init__(self, *args, **kwargs): 
+        super(ChildrenInformationForm, self).__init__(*args, **kwargs) 
+
+        # self.fields["clild_birthDate"].widget.attrs['class']= "datepicker7"
+        self.helper= FormHelper()
+        self.helper.form_id= "id-entryform"
+        self.helper.form_class= "form-inline"
+        self.helper.layout= Layout(
+            Div(
+                Div("clild_name", css_class='col-6 col-lg-2'),
+                Div("clild_gerder", css_class='col-6 col-md-2'),
+                Div("clild_birthDate",  css_class='col-5 col-md-2'),
+                Div("clild_BirthPlace",  css_class='col-md-3'),
+                Div("clild_Remarks",  css_class='col-md-3'),
+                
             css_class="row"
             )
         )

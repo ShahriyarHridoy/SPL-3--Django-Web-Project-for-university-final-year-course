@@ -94,6 +94,9 @@ $(function () {
 $(function () {
   $("#datepicker6").datepicker();
 });
+$(function () {
+  $("#datepicker7").datepicker();
+});
 //for date picker start
 
 //for profile picure start

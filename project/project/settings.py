@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     'widget_tweaks',
     'django_userforeignkey',
+    'dynamic_formsets',
     
 ]
 

@@ -88,6 +88,24 @@ class EducationInformation(models.Model):
     result= models.IntegerField()
     distinction= models.TextField(max_length= 300)
 
+class SpouseInformation(models.Model):
+    user = models.ForeignKey(User, null=True, blank=True, on_delete= models.CASCADE)
+    spouse_name= models.TextField(max_length= 300, blank=True)
+    spouse_home_district = models.TextField(max_length= 300 , blank=True)
+    spouse_occupation =  models.TextField(max_length= 300 , blank=True)
+    spouse_designation =  models.TextField(max_length= 300 , blank=True)
+    spouse_org_name =  models.TextField(max_length= 300 , blank=True)
+    spouse_org_address =  models.TextField(max_length= 400 , blank=True)
+    spouse_cell_no = models.IntegerField( blank=True)
+
+class ChildrenInformation(models.Model):
+    user = models.ForeignKey(User, null=True, blank=True, on_delete= models.CASCADE)
+    clild_name=  models.TextField(max_length= 150)
+    clild_gerder=  models.TextField(max_length= 50)
+    clild_birthDate= models.DateField()
+    clild_BirthPlace= models.TextField(max_length= 200)
+    clild_Remarks= models.TextField(max_length= 500)
+
 
 
 # class Comment(models.Model):

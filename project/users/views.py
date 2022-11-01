@@ -3,7 +3,7 @@ from pyexpat import model
 from sys import prefix
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from .forms import ChildrenInformationForm, EducationInformationForm, SpouseInformationForm, UserRegisterForm
+from .forms import AchievementInformationForm, ChildrenInformationForm, EducationInformationForm, LeaveInformationForm, OtherActivitiesInformationForm, OtherServiceInformationForm, PostingInformationForm, PromotionInformationForm, R_and_D_ProjectsInformationForm, ResearchInterestInformationForm, SpouseInformationForm, ThesisSupervisionInformationForm, TraningInformationForm, UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from users.models import *
@@ -152,7 +152,54 @@ def add_profile(request):
     ChildrenInfoFormset = formset_factory(ChildrenInformationForm)
     children_formset = ChildrenInfoFormset(request.POST if "child_info_button" in request.POST else None, prefix="children")
 
-    context={"edu_formset": edu_formset, "spouse_formset": spouse_formset, "children_formset": children_formset, }
+    TraningInfoFormset = formset_factory(TraningInformationForm)
+    traning_formset = TraningInfoFormset(request.POST if "traning_info_button" in request.POST else None, prefix="traning")
+
+    PostingInfoFormset = formset_factory(PostingInformationForm)
+    posting_formset= PostingInfoFormset(request.POST if "posting_info_button" in request.POST else None, prefix="posting")
+
+    PromotionInfoFormset = formset_factory(PromotionInformationForm)
+    promotion_formset= PromotionInfoFormset(request.POST if "promotion_info_button" in request.POST else None, prefix="promotion")
+
+    AchievementInfoFormset= formset_factory(AchievementInformationForm)
+    achievement_formset = AchievementInfoFormset(request.POST if "achievement_info_button" in request.POST else None, prefix="achievement")
+    
+    LeaveInfoFormset= formset_factory(LeaveInformationForm)
+    leave_formset= LeaveInfoFormset(request.POST if "leave_info_button" in request.POST else None, prefix="leave")
+
+    OtherServiceInfoFormset = formset_factory(OtherServiceInformationForm)
+    otherService_formset = OtherServiceInfoFormset(request.POST if "otherService_info_button" in request.POST else None, prefix="otherService")
+
+    OtherActivitiesInfoFormset = formset_factory(OtherActivitiesInformationForm)
+    otherActivities_formset = OtherActivitiesInfoFormset(request.POST if "otherActivities_info_button" in request.POST else None, prefix="otherActivities")
+    
+    R_and_D_ProjectInfoFormset = formset_factory(R_and_D_ProjectsInformationForm)
+    r_and_d_formset = R_and_D_ProjectInfoFormset(request.POST if "r_and_d_info_button" in request.POST else None, prefix="r_and_d")
+    
+    ThesisSupervisionInfoFormset = formset_factory(ThesisSupervisionInformationForm)
+    thesisSupervision_formset = ThesisSupervisionInfoFormset(request.POST if "thesisSupervision_info_button" in request.POST else None, prefix="thesisSupervision")
+
+    ResearchInterestInfoFormset = formset_factory(ResearchInterestInformationForm)
+    researchInterest_formset = ResearchInterestInfoFormset(request.POST if "researchInterest_info_button" in request.POST else None, prefix="researchInterest")
+
+    context={
+        "edu_formset": edu_formset,
+        "spouse_formset": spouse_formset,
+        "children_formset": children_formset,
+        "traning_formset":traning_formset,
+        "posting_formset": posting_formset,
+        "promotion_formset": promotion_formset,
+        "achievement_formset": achievement_formset,
+        "leave_formset": leave_formset,
+        "otherService_formset": otherService_formset,
+        "otherActivities_formset": otherActivities_formset,
+        "r_and_d_formset": r_and_d_formset,
+        "thesisSupervision_formset": thesisSupervision_formset,
+        "researchInterest_formset": researchInterest_formset,
+        
+
+        }
+
 
     if request.method == "POST":
 
@@ -197,6 +244,7 @@ def add_profile(request):
                 blood_group=  request.POST.get("blood_group"),
                 marital_status =  request.POST.get("marital_status"),
                 specialization =  request.POST.get("specialization"),
+                about_summary = request.POST.get("about_summary"),
                 pro_pic = pro_pic_file_url,
                 signature_pic= signature_pic_url,
                 )
@@ -329,6 +377,259 @@ def add_profile(request):
                         ).save()
                         messages.success(request, f'Your Children Information was added successfully')
 
+        elif "traning_info_button" in request.POST:
+            
+            if (traning_formset.is_valid()):
+                # educationInfo = EducationInformationForm(request.POST)   
+                print(traning_formset)
+                for form in traning_formset:
+                    print("#########################################")
+                    # print(form)
+                    print(form.cleaned_data.get("traning_type"))
+                    print(form.cleaned_data.get("traning_title"))
+                    if form.cleaned_data.get("traning_type") and form.cleaned_data.get("traning_title") and form.cleaned_data.get("traning_institution") and form.cleaned_data.get("traning_country"):
+                        # form.save()
+                        # child_birth_date = datetime.datetime.strptime(form2.cleaned_data.get("clild_birthDate"), "%m/%d/%Y").strftime("%Y-%m-%d")
+                        print("&&&&&&&&&&&&&&&&&&&&&&&")
+                        TraningInformation(
+                            user= request.user,
+                            traning_type= form.cleaned_data.get("traning_type"),
+                            traning_title= form.cleaned_data.get("traning_title"),
+                            traning_institution= form.cleaned_data.get("traning_institution"),
+                            traning_country= form.cleaned_data.get("traning_country"),
+                            traning_start_date= form.cleaned_data.get("traning_start_date"),
+                            traning_end_date= form.cleaned_data.get("traning_end_date"),
+                            traning_grade= form.cleaned_data.get("traning_grade"),
+                            traning_position= form.cleaned_data.get("traning_position"),
+                                
+                        ).save()
+                        messages.success(request, f'Your Traning Information was added successfully')
+
+        elif "posting_info_button" in request.POST:
+            
+            if (posting_formset.is_valid()):
+                # educationInfo = EducationInformationForm(request.POST)   
+                print(posting_formset)
+                for form in posting_formset:
+                    print("#########################################")
+                    # print(form)
+                    print(form.cleaned_data.get("p_designation"))
+                    print(form.cleaned_data.get("p_office"))
+                    if form.cleaned_data.get("p_office") and form.cleaned_data.get("p_district") and form.cleaned_data.get("p_upazila") :
+                        # form.save()
+                        # child_birth_date = datetime.datetime.strptime(form2.cleaned_data.get("clild_birthDate"), "%m/%d/%Y").strftime("%Y-%m-%d")
+                        print("&&&&&&&&&&&&&&&&&&&&&&&")
+                        PostingInformation(
+                            user= request.user,
+                            p_designation= form.cleaned_data.get("p_designation"),
+                            p_office= form.cleaned_data.get("p_office"),
+                            p_district= form.cleaned_data.get("p_district"),
+                            p_upazila= form.cleaned_data.get("p_upazila"),
+                            p_form_date= form.cleaned_data.get("p_form_date"),
+                            p_to_date= form.cleaned_data.get("p_to_date"),
+                            p_till_today= form.cleaned_data.get("p_till_today"),
+                            
+                                
+                        ).save()
+                        messages.success(request, f'Your Posting Information was added successfully')
+
+        elif "promotion_info_button" in request.POST:
+            
+            if (promotion_formset.is_valid()):
+                # educationInfo = EducationInformationForm(request.POST)   
+                print(promotion_formset)
+                for form in promotion_formset:
+                    print("#########################################")
+                    # print(form)
+                    print(form.cleaned_data.get("pro_designation"))
+                    print(form.cleaned_data.get("pro_nature"))
+                    if form.cleaned_data.get("pro_nature") and form.cleaned_data.get("pro_promotion_date") :
+                        # form.save()
+                        # child_birth_date = datetime.datetime.strptime(form2.cleaned_data.get("clild_birthDate"), "%m/%d/%Y").strftime("%Y-%m-%d")
+                        print("&&&&&&&&&&&&&&&&&&&&&&&")
+                        PromotionInformatrion(
+                            user= request.user,
+                            pro_designation= form.cleaned_data.get("pro_designation"),
+                            pro_nature=  form.cleaned_data.get("pro_nature"),
+                            pro_promotion_date=  form.cleaned_data.get("pro_promotion_date"),
+                            pro_order_no=  form.cleaned_data.get("pro_order_no"),
+                            pro_order_date=  form.cleaned_data.get("pro_order_date"),
+                            pro_remarks=  form.cleaned_data.get("pro_remarks"),
+                            
+                                
+                        ).save()
+                        messages.success(request, f'Your Promotion Information was added successfully')
+
+        elif "achievement_info_button" in request.POST:
+            
+            if (achievement_formset.is_valid()):
+                # educationInfo = EducationInformationForm(request.POST)   
+                print(achievement_formset)
+                for form in achievement_formset:
+                    print("#########################################")
+                    # print(form)
+                    print(form.cleaned_data.get("achievement_type"))
+                    print(form.cleaned_data.get("achievement_year"))
+                    print(form.cleaned_data.get("achievement_description"))
+                    if form.cleaned_data.get("achievement_type") and form.cleaned_data.get("achievement_year") :
+                        # form.save()
+                        # child_birth_date = datetime.datetime.strptime(form2.cleaned_data.get("clild_birthDate"), "%m/%d/%Y").strftime("%Y-%m-%d")
+                        print("&&&&&&&&&&&&&&&&&&&&&&&")
+                        AchievementInformation(
+                            user= request.user,
+                            achievement_type= form.cleaned_data.get("achievement_type"),
+                            achievement_year= form.cleaned_data.get("achievement_year"),
+                            achievement_description=  form.cleaned_data.get("achievement_description"),
+                            
+                                
+                        ).save()
+                        messages.success(request, f'Your Achievement Information was added successfully')
+        
+        elif "leave_info_button" in request.POST:
+            
+            if (leave_formset.is_valid()):
+                # educationInfo = EducationInformationForm(request.POST)   
+                print(leave_formset)
+                for form in leave_formset:
+                    print("#########################################")
+                    # print(form)
+                    print(form.cleaned_data.get("leave_type"))
+                    print(form.cleaned_data.get("leave_description"))
+                    if form.cleaned_data.get("leave_type") and form.cleaned_data.get("leave_description") :
+                        # form.save()
+                        # child_birth_date = datetime.datetime.strptime(form2.cleaned_data.get("clild_birthDate"), "%m/%d/%Y").strftime("%Y-%m-%d")
+                        print("&&&&&&&&&&&&&&&&&&&&&&&")
+                        LeaveInformation(
+                            user= request.user,
+                            leave_type = form.cleaned_data.get("leave_type"),
+                            leave_form= form.cleaned_data.get("leave_form"),
+                            leave_to= form.cleaned_data.get("leave_to"),
+                            leave_description= form.cleaned_data.get("leave_description"),
+                            
+                                
+                        ).save()
+                        messages.success(request, f'Your Leave/Deputation Information was added successfully')
+
+        elif "otherService_info_button" in request.POST:
+            
+            if (otherService_formset.is_valid()):
+                # educationInfo = EducationInformationForm(request.POST)   
+                print(otherService_formset)
+                for form in otherService_formset:
+                    print("#########################################")
+                    # print(form)
+                    print(form.cleaned_data.get("otherService_type"))
+                    print(form.cleaned_data.get("otherService_address"))
+                    if form.cleaned_data.get("otherService_type") and form.cleaned_data.get("otherService_address") :
+                        # form.save()
+                        # child_birth_date = datetime.datetime.strptime(form2.cleaned_data.get("clild_birthDate"), "%m/%d/%Y").strftime("%Y-%m-%d")
+                        print("&&&&&&&&&&&&&&&&&&&&&&&")
+                        OtherServiceInformation(
+                            user= request.user,
+                            otherService_type = form.cleaned_data.get("otherService_type"),
+                            otherService_address =  form.cleaned_data.get("otherService_address"),
+                            otherService_designation =   form.cleaned_data.get("otherService_designation"),
+                            otherService_form=  form.cleaned_data.get("otherService_form"),
+                            otherService_to= form.cleaned_data.get("otherService_to"),
+                            
+                                
+                        ).save()
+                        messages.success(request, f'Your Former/Other Information was added successfully')
+
+        elif "otherActivities_info_button" in request.POST:
+            
+            if (otherActivities_formset.is_valid()):
+                # educationInfo = EducationInformationForm(request.POST)   
+                print(otherActivities_formset)
+                for form in otherActivities_formset:
+                    print("#########################################")
+                    # print(form)
+                    print(form.cleaned_data.get("otherActivities_type"))
+                    print(form.cleaned_data.get("otherActivities_role"))
+                    if form.cleaned_data.get("otherActivities_type") and form.cleaned_data.get("otherActivities_role") :
+                        # form.save()
+                        # child_birth_date = datetime.datetime.strptime(form2.cleaned_data.get("clild_birthDate"), "%m/%d/%Y").strftime("%Y-%m-%d")
+                        print("&&&&&&&&&&&&&&&&&&&&&&&")
+                        OtherActivitiesInformation(
+                            user= request.user,
+                            otherActivities_type = form.cleaned_data.get("otherActivities_type"),
+                            otherActivities_role= form.cleaned_data.get("otherActivities_role"),
+                            otherActivities_form = form.cleaned_data.get("otherActivities_form"),
+                            otherActivities_to=  form.cleaned_data.get("otherActivities_to"),
+                            
+                                
+                        ).save()
+                        messages.success(request, f'Your Other Activities/Assignment Information was added successfully')
+
+        elif "r_and_d_formset_info_button" in request.POST:
+            
+            if (r_and_d_formset.is_valid()):
+                # educationInfo = EducationInformationForm(request.POST)   
+                print(r_and_d_formset)
+                for form in r_and_d_formset:
+                    print("#########################################")
+                    # print(form)
+                    print(form.cleaned_data.get("r_and_d_ProjectName"))
+                    print(form.cleaned_data.get("r_and_d_Project_role"))
+                    if form.cleaned_data.get("r_and_d_ProjectName") and form.cleaned_data.get("r_and_d_Project_role") :
+                        
+                        print("&&&&&&&&&&&&&&&&&&&&&&&")
+                        R_and_D_ProjectsInformation(
+                            user= request.user,
+                            r_and_d_ProjectName = form.cleaned_data.get("r_and_d_ProjectName"),
+                            r_and_d_Project_role= form.cleaned_data.get("r_and_d_Project_role"),
+                            r_and_d_Project_tenure = form.cleaned_data.get("r_and_d_Project_tenure"),
+                            
+                                
+                        ).save()
+                        messages.success(request, f'Your R & D Projects Information was added successfully')
+
+        elif "thesisSupervision_info_button" in request.POST:
+            
+            if (thesisSupervision_formset.is_valid()):
+                # educationInfo = EducationInformationForm(request.POST)   
+                print(thesisSupervision_formset)
+                for form in thesisSupervision_formset:
+                    print("#########################################")
+                    # print(form)
+                    print(form.cleaned_data.get("thesisSupervision_type"))
+                    print(form.cleaned_data.get("thesisSupervision_supervisors"))
+                    if form.cleaned_data.get("thesisSupervision_type") and form.cleaned_data.get("thesisSupervision_supervisors") :
+                        # form.save()
+                        # child_birth_date = datetime.datetime.strptime(form2.cleaned_data.get("clild_birthDate"), "%m/%d/%Y").strftime("%Y-%m-%d")
+                        print("&&&&&&&&&&&&&&&&&&&&&&&")
+                        ThesisSupervisionInformation(
+                            user= request.user,
+                            thesisSupervision_type = form.cleaned_data.get("thesisSupervision_type"),
+                            thesisSupervision_supervisors = form.cleaned_data.get("thesisSupervision_supervisors"),
+                            thesisSupervision_studentName = form.cleaned_data.get("thesisSupervision_studentName"),
+                            thesisSupervision_studentSession =  form.cleaned_data.get("thesisSupervision_studentSession"),
+                            thesisSupervision_thesisTitle = form.cleaned_data.get("thesisSupervision_thesisTitle"),
+                                
+                        ).save()
+                        messages.success(request, f'Your Thesis Supervision Information was added successfully')
+
+        elif "researchInterest_info_button" in request.POST:
+            
+            if (researchInterest_formset.is_valid()):
+                # educationInfo = EducationInformationForm(request.POST)   
+                print(researchInterest_formset)
+                for form in researchInterest_formset:
+                    print("#########################################")
+                    # print(form)
+                    print(form.cleaned_data.get("otherActivities_type"))
+                    if form.cleaned_data.get("otherActivities_type")  :
+                        
+                        print("&&&&&&&&&&&&&&&&&&&&&&&")
+                        ResearchInterestInformation(
+                            user= request.user,
+                            researchInterest_fields = form.cleaned_data.get("researchInterest_fields"),
+                                
+                        ).save()
+                        messages.success(request, f'Your Research Interest Information was added successfully')
+
+
+
     elif request.method == "Get":
         # formset = EducationInformationForm(queryset=EducationInformation.objects.none())
         # edu_formset = EducationInformationForm(request.GET or None)
@@ -337,6 +638,16 @@ def add_profile(request):
         edu_formset = EducationInfoFormset(request.GET, prefix="education")
         spouse_formset = SpouseInfoFormset(request.GET, prefix="spouse")
         children_formset = ChildrenInfoFormset(request.GET, prefix="children")
+        traning_formset = TraningInfoFormset(request.GET, prefix="traning")
+        posting_formset = PostingInfoFormset(request.GET, prefix="posting")
+        promotion_formset = PromotionInfoFormset(request.GET, prefix="promotion")
+        achievement_formset = AchievementInfoFormset(request.GET, prefix="achievement")
+        leave_formset= LeaveInfoFormset(request.GET, prefix="leave")
+        otherService_formset = OtherServiceInfoFormset(request.GET, prefix="otherService")
+        otherActivities_formset = OtherActivitiesInfoFormset(request.GET, prefix="otherActivities")
+        r_and_d_formset = R_and_D_ProjectInfoFormset(request.GET , prefix="r_and_d")
+        thesisSupervision_formset = ThesisSupervisionInfoFormset(request.GET, prefix="thesisSupervision")
+        researchInterest_formset = ResearchInterestInfoFormset(request.GET, prefix="researchInterest")
 
 
     return render(request, 'users/add-profile.html', context)

@@ -79,38 +79,65 @@
     </div>
     <div class="modal-body">
       <div id="smartwizard">
-        <ul>
-          <li>
-            <a href="#step-1">Step 1<br /><small>Personal Info</small></a>
-          </li>
-          <li>
-            <a href="#step-2">Step 2<br /><small>Contract Info</small></a>
-          </li>
-          <li>
-            <a href="#step-3">Step 3<br /><small>Joining Info</small></a>
-          </li>
-          <li>
-            <a href="#step-4"
-              >Step 4<br /><small>Spouse and Children Info</small></a
-            >
-          </li>
-          <li>
-            <a href="#step-5">Step 5<br /><small>Education Info</small></a>
-          </li>
-          <li>
-            <a href="#step-6">Step 6<br /><small>Traning Info</small></a>
-          </li>
-          <li>
-            <a href="#step-7">Step 7<br /><small>Posting Info</small></a>
-          </li>
-          <li>
-            <a href="#step-8">Step 8<br /><small>Promotion Info</small></a>
-          </li>
-          <li>
-            <a href="#step-9">Step 9<br /><small>Confirm details</small></a>
-          </li>
-        </ul>
-
+          <ul>
+            <li>
+              <a href="#step-1">Step 1<br /><small>Personal Info</small></a>
+            </li>
+            <li>
+              <a href="#step-2">Step 2<br /><small>Contract Info</small></a>
+            </li>
+            <li>
+              <a href="#step-3">Step 3<br /><small>Joining Info</small></a>
+            </li>
+            <li>
+              <a href="#step-4"
+                >Step 4<br /><small>Spouse and Children Info</small></a
+              >
+            </li>
+            <li>
+              <a href="#step-5">Step 5<br /><small>Education Info</small></a>
+            </li>
+            <li>
+              <a href="#step-6">Step 6<br /><small>Traning Info</small></a>
+            </li>
+            <li>
+              <a href="#step-7">Step 7<br /><small>Posting Info</small></a>
+            </li>
+            <li>
+              <a href="#step-8">Step 8<br /><small>Promotion Info</small></a>
+            </li>
+            <li>
+              <a href="#step-9">Step 9<br /><small>Achievement Info</small></a>
+            </li>
+            
+              {% comment %} <a href="#step-10"><br /><small></small></a> {% endcomment %}
+            
+          </ul>
+          <ul>
+            <li>
+              <a href="#step-10">Step 10<br /><small>Leave/Deputation Information</small></a>
+            </li>
+            <li>
+              <a href="#step-11">Step 11<br /><small>Formar/Other Service</small></a>
+            </li>
+            <li>
+              <a href="#step-12">Step 12<br /><small>Other Activities/Assignments</small></a>
+            </li>
+            <li>
+              <a href="#step-13">Step 13<br /><small>R & D Projects</small></a>
+            </li>
+            <li>
+              <a href="#step-14">Step 14<br /><small>Thesis Supervision </small></a>
+            </li>
+            <li>
+              <a href="#step-15">Step 15<br /><small> Research Interest </small></a>
+            </li>
+            <li>
+              <a href="#step-16"> <br/><small>All Done</small></a>
+            </li>
+          </ul>
+        
+        
         {% comment %}
         <h4 class="text-right">Personal Information</h4>
         {% endcomment %}
@@ -604,6 +631,19 @@
                         placeholder="division"
                         value=""
                       />
+                    </div>
+                    <div class="col-md-12">
+                      <label class="pims-labels"
+                        >Summary About You</label
+                      ><textarea
+                        name="about_summary"
+                        id="about_summary"
+                        rows="10"
+                        class="form-control"
+                        placeholder="input your description"
+                        value=""
+                      >
+                      </textarea>
                     </div>
                   </div>
                 </div>
@@ -1195,46 +1235,6 @@
                         </div>
 
                       {% endfor %} 
-                          
-                              {% comment %} <div class="col-md-3 mb-3" >
-                                {{spouse_formset.0.spouse_name|as_crispy_field }}
-                                {{spouse_formset.0.non_field_errors}}
-                                {{spouse_formset.0.errors}}
-                                
-                              </div>
-                              <div class="col-md-3 mb-3" >
-                                {{spouse_formset.0.spouse_home_district|as_crispy_field }}
-                                {{spouse_formset.0.non_field_errors}}
-                                {{spouse_formset.0.errors}}
-
-                              </div>
-                              <div class="col-md-3 mb-3" >
-                                {{spouse_formset.0.spouse_occupation|as_crispy_field}}
-                                {{spouse_formset.0.non_field_errors}}
-                                {{spouse_formset.0.errors}}
-
-                              </div>
-                              <div class="col-md-3 " >
-                                {{spouse_formset.0.spouse_designation|as_crispy_field }}
-                                {{spouse_formset.0.non_field_errors}}
-                                {{spouse_formset.0.errors}}
-
-                              </div>
-                              <div  class="col-md-3 ">
-                                {{spouse_formset.0.spouse_org_name|as_crispy_field }}
-                                {{spouse_formset.0.non_field_errors}}
-                                {{spouse_formset.0.errors}}
-                              </div>
-                              <div  class="col-md-3 ">
-                                {{spouse_formset.0.spouse_org_address|as_crispy_field }}
-                                {{spouse_formset.0.non_field_errors}}
-                                {{spouse_formset.0.errors}}
-                              </div>
-                              <div  class="col-md-3 ">
-                                {{spouse_formset.0.spouse_cell_no|as_crispy_field }}
-                                {{spouse_formset.0.non_field_errors}}
-                                {{spouse_formset.0.errors}}
-                              </div> {% endcomment %}
                     </div>
                   </div>
                 </table>
@@ -1258,21 +1258,28 @@
               </div>
               <div  id='toggle2' class="collapse">
                 <table>
-                  <div class="container mt-3">
+                  <ol class="container mt-3">
                     <div >
                       {{ children_formset.management_form }}
-                        {% for child_form in children_formset %}
-                          
-                              <div class="row mb-3" id= "child-form">
-                                {% crispy child_form %}
-                                {{child_form.non_field_errors}}
-                                {{child_form.errors}}
+                        {% for child_form in children_formset %}                          
+                              <div class="row mb-3 children-form-row">
+                                <li>
+                                  {% crispy child_form %}
+                                  {{child_form.non_field_errors}}
+                                  {{child_form.errors}}
+                                  <div class="input-group-append">
+                                    <button class="btn btn-success children-add-form-row">+</button>
+                                  </div>
+                                </li>                                
                             </div>
   
                       {% endfor %} 
                      
                     </div>
-                  </div>
+                    <div class="mt-3" id="bottom-div">
+                      <button class="children-add-form-row" style="background-color: gray;" type="button">Add Another Form</button>
+                    </div>
+                  </ol>
                 </table>
                 <div class="mt-5 text-center">
                   <button
@@ -1339,19 +1346,22 @@
                       </div>
                     </div>
                     <div  class="row mb-3">
-                    <li  >
+                    <div >
 
                       {{ edu_formset.management_form }}
 
                         {% for form in edu_formset %}
 
                               <div class="row mb-3 form-row" id="edu-form">
-                                {% crispy form %}
-                                {{form.non_field_errors}}
-                                {{form.errors}}
-                                <div class="input-group-append">
+                                <li>
+                                  {% crispy form %}
+                                  {{form.non_field_errors}}
+                                  {{form.errors}}
+                                  <div class="input-group-append">
                                   <button class="btn btn-success add-form-row">+</button>
-                                </div>
+                                  </div>
+                                </li>
+                                
                               </div>
                               
 
@@ -1380,17 +1390,10 @@
                           <button class="btn btn-success add-form-row">+</button>
                         </div>
                       </div> {% endcomment %}
-                    </li>
+                    </div>
                   </div>
-
-                      
-                        {% comment %} <div class="row mt-2 hidden" id="empty-form" style="display:none">
-                          
-                          {% crispy formset.empty_form %}
-                        </div> {% endcomment %}
-                        {% comment %} <button class="btn btn-success mt-4" id='add_more' type='button'>Add more Information</button> {% endcomment %}          
-                  <div class="container mt-3" id="bottom-div">
-                    <button class="add-form-row" id="add-form" type="button">Add Another Form</button>
+                  <div class="mt-3" id="bottom-div">
+                    <button class="btn btn-success mt-4 add-form-row" id="add-form" type="button">Add Another Form</button>
                   </div>
                 </ol>
 
@@ -1406,7 +1409,7 @@
                   name="education_info_button"
                   type="submit"
                 >
-                  Save Contrct Info
+                  Save Education Info
                 </button>
               </div>
             </form>
@@ -1421,68 +1424,82 @@
               <div class="col-md-4">
                 <div class="justify-content-between align-items-center mb-3">
                   <h4 class="text-center" style="background-color: darkgrey">
-                    Education Information
+                    Traning Information
                   </h4>
                 </div>
               </div>
             </div>
-            <form class="needs-validation" method="POST" action="#step-5" enctype="multipart/form-data">
+            <form class="needs-validation" method="POST" action="#step-6" enctype="multipart/form-data">
               {% csrf_token %}
-              <table>
-                <div class="container mt-3">
-                  <div class="row">
-                    <div class="col-md-2">
-                      <p class="text-center">Degree</p>
-                    </div>
-                    <div class="col-md-2">
-                      <p class="text-center">Group/Department</p>
-                    </div>
-                    <div class="col-md-2">
-                      <p class="text-center">Board/University</p>
-                    </div>
-                    <div class="col-md-2">
-                      <p class="text-center">Passing year</p>
-                    </div>
-                    <div class="col-md-2 text-center">
-                      <p class="text-center">Result </br> (Division/GPA/CGPA)</p>                  
-                    </div>
-                    <div class="col-md-2">
-                      <p class="text-center">Distinction</p>
-                    </div>
-                    <div class="col-md-2">
-                      <p class="text-center"></p>
-                    </div>
-                  </div>
-                  <div >
-                    {{ formset.management_form }}
-                      {% for form in formset %}
-                        
-                            <div class="row mb-3" >
-                              {% crispy form %}
-                              {{form.non_field_errors}}
-                              {{form.errors}}
-                          </div>
 
-                    {% endfor %} 
-                    {% comment %} <div class="row mt-2 hidden" id="empty-form" style="display:none">
-                      
-                      {% crispy formset.empty_form %}
-                    </div> {% endcomment %}
-                    {% comment %} <button class="btn btn-success mt-4" id='add_more' type='button'>Add more Information</button> {% endcomment %}          
+              <table>
+                <ol class="container mt-3 "  id="form-container">
+                    <div class="row">
+                      <div class="col-md-1">
+                        <p class="text-center">Type </br> (Local/Foreign)</p>
+                      </div>
+                      <div class="col-md-3">
+                        <p class="text-center">Title</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Instituation</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Country</p>
+                      </div>
+                      <div class="col-md-1 ">
+                        <p class="text-center">Start Date</p>                  
+                      </div>
+                      <div class="col-md-1">
+                        <p class="text-center">End Date</p>
+                      </div>
+                      <div class="col-md-1">
+                        <p class="text-center"> Grade</p>
+                      </div>
+                      <div class="col-md-1">
+                        <p class="text-center"> Position</p>
+                      </div>
+                    </div>
+                    <div  class="row mb-3">
+                    <div >
+
+                      {{ traning_formset.management_form }}
+
+                        {% for form in traning_formset %}
+
+                              <div class="row mb-3 traning-form-row" id="edu-form">
+                                <li>
+                                  {% crispy form %}
+                                  {{form.non_field_errors}}
+                                  {{form.errors}}
+                                  <div class="input-group-append">
+                                  <button class="btn btn-success traning-add-form-row">+</button>
+                                  </div>
+                                </li>
+                                
+                              </div>
+                              
+
+                      {% endfor %} 
+                    </div>
                   </div>
-                </div>
+                  <div class="mt-2" id="bottom-div">
+                    <button class="btn btn-success mt-4 traning-add-form-row" id="add-form" type="button">Add Another Form</button>
+                  </div>
+                </ol>
               </table>
 
               <div class="mt-5 text-center">
                 <button
                   class="btn btn-primary profile-button"
-                  name="education_info_button"
+                  name="traning_info_button"
                   type="submit"
                 >
-                  Save Contrct Info
+                  Save Traning Info
                 </button>
               </div>
             </form>
+            
             <div class="row">
               <p class="text-center"></p>
             </div>
@@ -1493,68 +1510,80 @@
               <div class="col-md-4">
                 <div class="justify-content-between align-items-center mb-3">
                   <h4 class="text-center" style="background-color: darkgrey">
-                    Education Information
+                    Posting Information
                   </h4>
                 </div>
               </div>
             </div>
-            <form class="needs-validation" method="POST" action="#step-5" enctype="multipart/form-data">
+            <form class="needs-validation" method="POST" action="#step-7" enctype="multipart/form-data">
               {% csrf_token %}
-              <table>
-                <div class="container mt-3">
-                  <div class="row">
-                    <div class="col-md-2">
-                      <p class="text-center">Degree</p>
-                    </div>
-                    <div class="col-md-2">
-                      <p class="text-center">Group/Department</p>
-                    </div>
-                    <div class="col-md-2">
-                      <p class="text-center">Board/University</p>
-                    </div>
-                    <div class="col-md-2">
-                      <p class="text-center">Passing year</p>
-                    </div>
-                    <div class="col-md-2 text-center">
-                      <p class="text-center">Result </br> (Division/GPA/CGPA)</p>                  
-                    </div>
-                    <div class="col-md-2">
-                      <p class="text-center">Distinction</p>
-                    </div>
-                    <div class="col-md-2">
-                      <p class="text-center"></p>
-                    </div>
-                  </div>
-                  <div >
-                    {{ formset.management_form }}
-                      {% for form in formset %}
-                        
-                            <div class="row mb-3" >
-                              {% crispy form %}
-                              {{form.non_field_errors}}
-                              {{form.errors}}
-                          </div>
 
-                    {% endfor %} 
-                    {% comment %} <div class="row mt-2 hidden" id="empty-form" style="display:none">
+              <table>
+                <ol class="container mt-3 "  id="form-container">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <p class="text-center">Designation</p>
+                      </div>
+                      <div class="col-md-3">
+                        <p class="text-center">Office</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">District</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Upazila</p>
+                      </div>
+                      <div class="col-md-1 ">
+                        <p class="text-center">Form Date</p>                  
+                      </div>
+                      <div class="col-md-1">
+                        <p class="text-center">To Date</p>
+                      </div>
+                      <div class="col-md-1">
+                        <p class="text-center">Till Today</p>
+                      </div>
                       
-                      {% crispy formset.empty_form %}
-                    </div> {% endcomment %}
-                    {% comment %} <button class="btn btn-success mt-4" id='add_more' type='button'>Add more Information</button> {% endcomment %}          
+                    </div>
+                    <div  class="row mb-3">
+                    <div >
+
+                      {{ posting_formset.management_form }}
+
+                        {% for form in posting_formset %}
+
+                              <div class="row mb-3 posting-form-row" >
+                                <li>
+                                  {% crispy form %}
+                                  {{form.non_field_errors}}
+                                  {{form.errors}}
+                                  <div class="input-group-append">
+                                  <button class="btn btn-success posting-add-form-row">+</button>
+                                  </div>
+                                </li>
+                                
+                              </div>
+                              
+
+                      {% endfor %} 
+                    </div>
                   </div>
-                </div>
+                  <div class="mt-2" id="bottom-div">
+                    <button class="btn btn-success mt-4 posting-add-form-row" id="add-form" type="button">Add Another Form</button>
+                  </div>
+                </ol>
               </table>
 
               <div class="mt-5 text-center">
                 <button
                   class="btn btn-primary profile-button"
-                  name="education_info_button"
+                  name="posting_info_button"
                   type="submit"
                 >
-                  Save Contrct Info
+                  Save Posting Info
                 </button>
               </div>
             </form>
+            
             <div class="row">
               <p class="text-center"></p>
             </div>
@@ -1565,80 +1594,587 @@
               <div class="col-md-4">
                 <div class="justify-content-between align-items-center mb-3">
                   <h4 class="text-center" style="background-color: darkgrey">
-                    Education Information
+                    Promotion Information
                   </h4>
                 </div>
               </div>
             </div>
-            <form class="needs-validation" method="POST" action="#step-5" enctype="multipart/form-data">
+            <form class="needs-validation" method="POST" action="#step-8" enctype="multipart/form-data">
               {% csrf_token %}
-              <table>
-                <div class="container mt-3">
-                  <div class="row">
-                    <div class="col-md-2">
-                      <p class="text-center">Degree</p>
-                    </div>
-                    <div class="col-md-2">
-                      <p class="text-center">Group/Department</p>
-                    </div>
-                    <div class="col-md-2">
-                      <p class="text-center">Board/University</p>
-                    </div>
-                    <div class="col-md-2">
-                      <p class="text-center">Passing year</p>
-                    </div>
-                    <div class="col-md-2 text-center">
-                      <p class="text-center">Result </br> (Division/GPA/CGPA)</p>                  
-                    </div>
-                    <div class="col-md-2">
-                      <p class="text-center">Distinction</p>
-                    </div>
-                    <div class="col-md-2">
-                      <p class="text-center"></p>
-                    </div>
-                  </div>
-                  <div >
-                    {{ formset.management_form }}
-                      {% for form in formset %}
-                        
-                            <div class="row mb-3" >
-                              {% crispy form %}
-                              {{form.non_field_errors}}
-                              {{form.errors}}
-                          </div>
 
-                    {% endfor %} 
-                    {% comment %} <div class="row mt-2 hidden" id="empty-form" style="display:none">
+              <table>
+                <ol class="container mt-3 "  id="form-container">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <p class="text-center">Designation</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Nature</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Promotion Date</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Order No</p>
+                      </div>
+                      <div class="col-md-2 ">
+                        <p class="text-center">Order Date</p>                  
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Remarks</p>
+                      </div>                  
                       
-                      {% crispy formset.empty_form %}
-                    </div> {% endcomment %}
-                    {% comment %} <button class="btn btn-success mt-4" id='add_more' type='button'>Add more Information</button> {% endcomment %}          
+                    </div>
+                    <div  class="row mb-3">
+                    <div >
+
+                      {{ promotion_formset.management_form }}
+
+                        {% for form in promotion_formset %}
+
+                              <div class="row mb-3 promotion-form-row" >
+                                <li>
+                                  {% crispy form %}
+                                  {{form.non_field_errors}}
+                                  {{form.errors}}
+                                  <div class="input-group-append">
+                                  <button class="btn btn-success promotion-add-form-row">+</button>
+                                  </div>
+                                </li>
+                                
+                              </div>
+                              
+
+                      {% endfor %} 
+                    </div>
                   </div>
-                </div>
+                  <div class="mt-2" id="bottom-div">
+                    <button class="btn btn-success mt-4 promotion-add-form-row" id="add-form" type="button">Add Another Form</button>
+                  </div>
+                </ol>
               </table>
 
               <div class="mt-5 text-center">
                 <button
                   class="btn btn-primary profile-button"
-                  name="education_info_button"
+                  name="promotion_info_button"
                   type="submit"
                 >
-                  Save Contrct Info
+                  Save Promotion Info
                 </button>
               </div>
             </form>
+            
             <div class="row">
               <p class="text-center"></p>
             </div>
           </div>
+          
           <div id="step-9" class="">
             <div class="row">
-              <div class="col-md-12">
-                <span
-                  >Thanks For submitting your details. We will send you a
-                  confirmation email.
-                </span>
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <div class="justify-content-between align-items-center mb-3">
+                  <h4 class="text-center" style="background-color: darkgrey">
+                    Achievement Information
+                  </h4>
+                </div>
               </div>
+            </div>
+            <form class="needs-validation" method="POST" action="#step-9" enctype="multipart/form-data">
+              {% csrf_token %}
+
+              <table>
+                <ol class="container mt-3 "  id="form-container">
+                    <div class="row">
+                      <div class="col-md-2 justify-content-between align-items-center">
+                        <p class="text-center">Achievement Type</p>
+                      </div>
+                      <div class="col-md-1"></div>
+                      <div class="col-md-2">
+                        <p class="text-center">Publishing Year </br> or Year of Acceptance</p>
+                      </div>
+                      <div class="col-md-7">
+                        <p class="text-center">Description</br> (Add reference where needed)</p>
+                      </div>
+                            
+                      
+                    </div>
+                    <div  class="row mb-3">
+                    <div >
+
+                      {{ achievement_formset.management_form }}
+
+                        {% for form in achievement_formset %}
+
+                              <div class="row mb-3 achievement-form-row" >
+                                <li>
+                                  {% crispy form %}
+                                  {{form.non_field_errors}}
+                                  {{form.errors}}
+                                  <div class="input-group-append">
+                                  <button class="btn btn-success achievement-add-form-row">+</button>
+                                  </div>
+                                </li>
+                                
+                              </div>
+                              
+
+                      {% endfor %} 
+                    </div>
+                  </div>
+                  <div class="mt-2" id="bottom-div">
+                    <button class="btn btn-success mt-4 achievement-add-form-row" id="add-form" type="button">Add Another Form</button>
+                  </div>
+                </ol>
+              </table>
+
+              <div class="mt-5 text-center">
+                <button
+                  class="btn btn-primary profile-button"
+                  name="achievement_info_button"
+                  type="submit"
+                >
+                  Save Promotion Info
+                </button>
+              </div>
+            </form>
+            
+            <div class="row">
+              <p class="text-center"></p>
+            </div>
+          </div>
+
+          <div id="step-10" class="">
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <div class="justify-content-between align-items-center mb-3">
+                  <h4 class="text-center" style="background-color: darkgrey">
+                    Leave/Deputation Information
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <form class="needs-validation" method="POST" action="#step-10" enctype="multipart/form-data">
+              {% csrf_token %}
+
+              <table>
+                <ol class="container mt-3 "  id="form-container">
+                    {% comment %} <div class="row">
+                      <div class="col-md-2">
+                        <p class="text-center">Designation</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Nature</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Promotion Date</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Order No</p>
+                      </div>
+                      <div class="col-md-2 ">
+                        <p class="text-center">Order Date</p>                  
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Remarks</p>
+                      </div>                  
+                      
+                    </div> {% endcomment %}
+                    <div  class="row mb-3">
+                    <div >
+
+                      {{ leave_formset.management_form }}
+
+                        {% for form in leave_formset %}
+
+                              <div class="row mb-3 leave-form-row" >
+                                <li>
+                                  {% crispy form %}
+                                  {{form.non_field_errors}}
+                                  {{form.errors}}
+                                  <div class="input-group-append">
+                                  <button class="btn btn-success leave-add-form-row">+</button>
+                                  </div>
+                                </li>
+                                
+                              </div>
+                              
+
+                      {% endfor %} 
+                    </div>
+                  </div>
+                  <div class="mt-2" id="bottom-div">
+                    <button class="btn btn-success mt-4 leave-add-form-row" id="add-form" type="button">Add Another Form</button>
+                  </div>
+                </ol>
+              </table>
+
+              <div class="mt-5 text-center">
+                <button
+                  class="btn btn-primary profile-button"
+                  name="leave_info_button"
+                  type="submit"
+                >
+                  Save Leave/Deputation Info
+                </button>
+              </div>
+            </form>
+            
+            <div class="row">
+              <p class="text-center"></p>
+            </div>
+          </div>
+
+          <div id="step-11" class="">
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <div class="justify-content-between align-items-center mb-3">
+                  <h4 class="text-center" style="background-color: darkgrey">
+                    Formar/Other Service
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <form class="needs-validation" method="POST" action="#step-11" enctype="multipart/form-data">
+              {% csrf_token %}
+
+              <table>
+                <ol class="container mt-3 "  id="form-container">
+                    {% comment %} <div class="row">
+                      <div class="col-md-2">
+                        <p class="text-center">Designation</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Nature</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Promotion Date</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Order No</p>
+                      </div>
+                      <div class="col-md-2 ">
+                        <p class="text-center">Order Date</p>                  
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Remarks</p>
+                      </div>                  
+                      
+                    </div> {% endcomment %}
+                  <div  class="row mb-3">
+                    <div >
+
+                      {{ otherService_formset.management_form }}
+
+                        {% for form in otherService_formset %}
+
+                              <div class="row mb-3 otherService-form-row" >
+                                <li>
+                                  {% crispy form %}
+                                  {{form.non_field_errors}}
+                                  {{form.errors}}
+                                  <div class="input-group-append">
+                                  <button class="btn btn-success otherService-add-form-row">+</button>
+                                  </div>
+                                </li>
+                                
+                              </div>
+                              
+
+                      {% endfor %} 
+                    </div>
+                  </div>
+                  <div class="mt-2" id="bottom-div">
+                    <button class="btn btn-success mt-4 otherService-add-form-row" id="add-form" type="button">Add Another Form</button>
+                  </div>
+                </ol>
+              </table>
+
+              <div class="mt-5 text-center">
+                <button
+                  class="btn btn-primary profile-button"
+                  name="otherService_info_button"
+                  type="submit"
+                >
+                  Save Other Service Info
+                </button>
+              </div>
+            </form>
+            
+            <div class="row">
+              <p class="text-center"></p>
+            </div>
+          </div>
+
+          <div id="step-12" class="">
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <div class="justify-content-between align-items-center mb-3">
+                  <h4 class="text-center" style="background-color: darkgrey">
+                    Other Activities/Assignments
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <form class="needs-validation" method="POST" action="#step-12" enctype="multipart/form-data">
+              {% csrf_token %}
+
+              <table>
+                <ol class="container mt-3 "  id="form-container">
+                    {% comment %} <div class="row">
+                      <div class="col-md-2">
+                        <p class="text-center">Designation</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Nature</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Promotion Date</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Order No</p>
+                      </div>
+                      <div class="col-md-2 ">
+                        <p class="text-center">Order Date</p>                  
+                      </div>
+                      <div class="col-md-2">
+                        <p class="text-center">Remarks</p>
+                      </div>                  
+                      
+                    </div> {% endcomment %}
+                  <div  class="row mb-3">
+                    <div >
+
+                      {{ otherActivities_formset.management_form }}
+
+                        {% for form in otherActivities_formset %}
+
+                              <div class="row mb-3 otherActivities-form-row" >
+                                <li>
+                                  {% crispy form %}
+                                  {{form.non_field_errors}}
+                                  {{form.errors}}
+                                  <div class="input-group-append">
+                                  <button class="btn btn-success otherActivities-add-form-row">+</button>
+                                  </div>
+                                </li>
+                                
+                              </div>
+                              
+
+                      {% endfor %} 
+                    </div>
+                  </div>
+                  <div class="mt-2" id="bottom-div">
+                    <button class="btn btn-success mt-4 otherActivities-add-form-row" id="add-form" type="button">Add Another Form</button>
+                  </div>
+                </ol>
+              </table>
+
+              <div class="mt-5 text-center">
+                <button
+                  class="btn btn-primary profile-button"
+                  name="otherActivities_info_button"
+                  type="submit"
+                >
+                  Save Other Activities Info
+                </button>
+              </div>
+            </form>
+            
+            <div class="row">
+              <p class="text-center"></p>
+            </div>
+          </div>
+
+          <div id="step-13" class="">
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <div class="justify-content-between align-items-center mb-3">
+                  <h4 class="text-center" style="background-color: darkgrey">
+                    Ongoing R & D Projects
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <form class="needs-validation" method="POST" action="#step-12" enctype="multipart/form-data">
+              {% csrf_token %}
+
+              <table>
+                <ol class="container mt-3 "  id="form-container">
+                    
+                  <div  class="row mb-3">
+                    <div >
+
+                      {{ r_and_d_formset.management_form }}
+
+                        {% for form in r_and_d_formset %}
+
+                              <div class="row mb-3 r_and_d-form-row" >
+                                <li>
+                                  {% crispy form %}
+                                  {{form.non_field_errors}}
+                                  {{form.errors}}
+                                  <div class="input-group-append">
+                                  <button class="btn btn-success r_and_d-add-form-row">+</button>
+                                  </div>
+                                </li>
+                                
+                              </div>
+                              
+
+                      {% endfor %} 
+                    </div>
+                  </div>
+                  <div class="mt-2" id="bottom-div">
+                    <button class="btn btn-success mt-4 r_and_d-add-form-row" id="add-form" type="button">Add Another Form</button>
+                  </div>
+                </ol>
+              </table>
+
+              <div class="mt-5 text-center">
+                <button
+                  class="btn btn-primary profile-button"
+                  name="r_and_d_info_button"
+                  type="submit"
+                >
+                  Save R&D Project Info
+                </button>
+              </div>
+            </form>
+            
+            <div class="row">
+              <p class="text-center"></p>
+            </div>
+          </div>
+
+          <div id="step-14" class="">
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <div class="justify-content-between align-items-center mb-3">
+                  <h4 class="text-center" style="background-color: darkgrey">
+                    Thesis Supervision
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <form class="needs-validation" method="POST" action="#step-12" enctype="multipart/form-data">
+              {% csrf_token %}
+
+              <table>
+                <ol class="container mt-3 "  id="form-container">
+                    
+                  <div  class="row mb-3">
+                    <div >
+
+                      {{ thesisSupervision_formset.management_form }}
+
+                        {% for form in thesisSupervision_formset %}
+
+                              <div class="row mb-3 thesisSupervision-form-row" >
+                                <li>
+                                  {% crispy form %}
+                                  {{form.non_field_errors}}
+                                  {{form.errors}}
+                                  <div class="input-group-append">
+                                  <button class="btn btn-success thesisSupervision-add-form-row">+</button>
+                                  </div>
+                                </li>
+                                
+                              </div>
+                              
+
+                      {% endfor %} 
+                    </div>
+                  </div>
+                  <div class="mt-2" id="bottom-div">
+                    <button class="btn btn-success mt-4 thesisSupervision-add-form-row" id="add-form" type="button">Add Another Form</button>
+                  </div>
+                </ol>
+              </table>
+
+              <div class="mt-5 text-center">
+                <button
+                  class="btn btn-primary profile-button"
+                  name="thesisSupervision_info_button"
+                  type="submit"
+                >
+                  Save Thesis Supervision Info
+                </button>
+              </div>
+            </form>
+            
+            <div class="row">
+              <p class="text-center"></p>
+            </div>
+          </div>
+
+          <div id="step-15" class="">
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <div class="justify-content-between align-items-center mb-3">
+                  <h4 class="text-center" style="background-color: darkgrey">
+                    Research Interest Information
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <form class="needs-validation" method="POST" action="#step-12" enctype="multipart/form-data">
+              {% csrf_token %}
+
+              <table>
+                <ol class="container mt-3 "  id="form-container">
+                    
+                  <div  class="row mb-3">
+                    <div >
+
+                      {{ researchInterest_formset.management_form }}
+
+                        {% for form in researchInterest_formset %}
+
+                              <div class="row mb-3 researchInterest-form-row" >
+                                <li>
+                                  
+                                  <div class="input-group-append">
+                                  {% crispy form %}
+                                  <button class="btn btn-success researchInterest-add-form-row">+</button>
+                                  </div>
+                                  {{form.non_field_errors}}
+                                  {{form.errors}}
+                                </li>
+                                
+                              </div>
+                              
+
+                      {% endfor %} 
+                    </div>
+                  </div>
+                  <div class="mt-2" id="bottom-div">
+                    <button class="btn btn-success mt-4 researchInterest-add-form-row" id="add-form" type="button">Add Another Form</button>
+                  </div>
+                </ol>
+              </table>
+
+              <div class="mt-5 text-center">
+                <button
+                  class="btn btn-primary profile-button"
+                  name="researchInterest_info_button"
+                  type="submit"
+                >
+                  Save Research Interest Info
+                </button>
+              </div>
+            </form>
+            
+            <div class="row">
+              <p class="text-center"></p>
             </div>
           </div>
         </div>

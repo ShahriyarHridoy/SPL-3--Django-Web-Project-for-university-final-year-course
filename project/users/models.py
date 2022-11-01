@@ -32,6 +32,7 @@ class Personal_info(models.Model):
     blood_group= models.TextField(max_length=3)
     marital_status = models.TextField(max_length=20)
     specialization = models.TextField(max_length=500)
+    about_summary= models.TextField()
     pro_pic= models.ImageField(upload_to='images/')
     signature_pic = models.ImageField(upload_to='signatures/')
 
@@ -106,7 +107,81 @@ class ChildrenInformation(models.Model):
     clild_BirthPlace= models.TextField(max_length= 200)
     clild_Remarks= models.TextField(max_length= 500)
 
+class TraningInformation(models.Model):
+    user= models.ForeignKey(User, null=True, blank=True, on_delete= models.CASCADE)
+    traning_type= models.TextField(max_length= 150)
+    traning_title= models.TextField(max_length= 300)
+    traning_institution= models.TextField(max_length= 200)
+    traning_country= models.TextField(max_length= 150)
+    traning_start_date= models.DateField()
+    traning_end_date= models.DateField()
+    traning_grade= models.IntegerField()
+    traning_position= models.TextField(max_length= 150)
 
+class PostingInformation(models.Model):
+    user= models.ForeignKey(User, null=True, blank=True, on_delete= models.CASCADE)
+    p_designation= models.TextField(max_length= 100)
+    p_office= models.TextField(max_length= 150)
+    p_district= models.TextField(max_length= 50)
+    p_upazila= models.TextField(max_length= 80)
+    p_form_date= models.DateField()
+    p_to_date= models.DateField()
+    p_till_today= models.TextField(max_length= 150)
+
+class PromotionInformatrion(models.Model):
+    user= models.ForeignKey(User, null=True, blank=True, on_delete= models.CASCADE)
+    pro_designation=  models.TextField(max_length= 150)
+    pro_nature=  models.TextField(max_length= 150)
+    pro_promotion_date=  models.DateField()
+    pro_order_no=  models.TextField(max_length= 100)
+    pro_order_date=  models.DateField()
+    pro_remarks=  models.TextField(max_length= 300)
+
+class AchievementInformation(models.Model):
+    user= models.ForeignKey(User, null=True, blank=True, on_delete= models.CASCADE)
+    achievement_type= models.TextField(max_length= 100)
+    achievement_year=  models.DateField()
+    achievement_description=  models.TextField(max_length= 400)
+
+class LeaveInformation(models.Model):
+    user= models.ForeignKey(User, null=True, blank=True, on_delete= models.CASCADE)
+    leave_type = models.TextField(max_length= 150)
+    leave_form= models.DateField()
+    leave_to= models.DateField()
+    leave_description= models.TextField(max_length= 400)
+
+class OtherServiceInformation(models.Model):
+    user= models.ForeignKey(User, null=True, blank=True, on_delete= models.CASCADE)
+    otherService_type = models.TextField(max_length= 150)
+    otherService_address =  models.TextField(max_length= 300)
+    otherService_designation =  models.TextField(max_length= 150)
+    otherService_form= models.DateField()
+    otherService_to= models.DateField()
+
+class OtherActivitiesInformation(models.Model):
+    user= models.ForeignKey(User, null=True, blank=True, on_delete= models.CASCADE)
+    otherActivities_type = models.TextField(max_length= 150)
+    otherActivities_role =  models.TextField(max_length= 200)
+    otherActivities_form= models.DateField()
+    otherActivities_to= models.DateField()
+
+class R_and_D_ProjectsInformation(models.Model):
+    user= models.ForeignKey(User, null=True, blank=True, on_delete= models.CASCADE)
+    r_and_d_ProjectName = models.TextField(max_length= 250)
+    r_and_d_Project_role = models.TextField(max_length= 150)
+    r_and_d_Project_tenure= models.TextField(max_length= 50)
+
+class ThesisSupervisionInformation(models.Model):
+    user= models.ForeignKey(User, null=True, blank=True, on_delete= models.CASCADE)
+    thesisSupervision_type = models.TextField(max_length= 50)
+    thesisSupervision_supervisors = models.TextField(max_length= 300)
+    thesisSupervision_studentName = models.TextField(max_length= 100)
+    thesisSupervision_studentSession= models.TextField(max_length= 50)
+    thesisSupervision_thesisTitle = models.TextField(max_length= 300)
+
+class ResearchInterestInformation(models.Model):
+    user= models.ForeignKey(User, null=True, blank=True, on_delete= models.CASCADE)
+    researchInterest_fields = models.TextField(max_length= 200)
 
 # class Comment(models.Model):
 #     name = models.CharField(max_length=42)

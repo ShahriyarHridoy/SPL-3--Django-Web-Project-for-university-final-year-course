@@ -2,7 +2,6 @@ from dataclasses import fields
 from logging import PlaceHolder
 from multiprocessing.sharedctypes import Value
 from random import choices
-from tkinter import Button
 from turtle import onclick
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm

@@ -16,7 +16,17 @@ from crispy_forms.helper import FormHelper
 
 
 class EducationInformationForm(forms.ModelForm):
-    degree= forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Degree'}), label="",)
+
+    degree_nmae = (
+        ("",'Choose degree'),
+        ("Phd", "Phd"),
+        ("MS", "MS"),
+        ("BSc", "BSc"),
+        ("HSC", "HSC"),
+        ("SSC", "SSC"),
+    )
+
+    degree= forms.ChoiceField(choices= degree_nmae, label="Degree",)
     r_department = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Group/Department"}), label="")
     board_university= forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Board/University"}), label="")
     passing_year= forms.CharField(widget=forms.NumberInput(attrs={'placeholder': "Passing Year"}), label="")
@@ -412,13 +422,28 @@ class OtherActivitiesInformationForm(forms.ModelForm):
 
 class R_and_D_ProjectsInformationForm(forms.ModelForm):
 
+    Project_type = (
+        ("",'Choose'),
+        ("R & D", "R & D"),
+        ("EXT. grant-Special Allocation", "EXT. grant-Special Allocation"),
+        ("EXT. grant-Foreign Allocation", "EXT. grant-Foreign Allocation"),
+        
+    )
+    Project_status = (
+        ("",'Choose'),
+        ("Complete", "Complete"),
+        ("Ongoing", "Ongoing"), 
+    )
+
+    r_and_d_Project_type= forms.ChoiceField(choices= Project_type, label='Project Type',)
     r_and_d_ProjectName = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "project name"}), label="Project Name", )
     r_and_d_Project_role = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "role"}), label="Role in Project", )
+    r_and_d_Project_status= forms.ChoiceField(choices= Project_status, label='Project Status',)
     r_and_d_Project_tenure= forms.CharField(widget=forms.TextInput(attrs={'placeholder': "E.g. 2020-2021"}), label="Tenure", )
 
     class Meta:
         model = R_and_D_ProjectsInformation
-        fields= ["r_and_d_ProjectName", "r_and_d_Project_role", "r_and_d_Project_tenure", ]
+        fields= ["r_and_d_Project_type","r_and_d_ProjectName", "r_and_d_Project_role", "r_and_d_Project_status", "r_and_d_Project_tenure", ]
 
     def __init__(self, *args, **kwargs): 
         super(R_and_D_ProjectsInformationForm, self).__init__(*args, **kwargs) 
@@ -427,8 +452,10 @@ class R_and_D_ProjectsInformationForm(forms.ModelForm):
         self.helper.form_class= "form-inline"
         self.helper.layout= Layout(
             Div(
-                Div("r_and_d_ProjectName", css_class=' col-lg-6'),
-                Div("r_and_d_Project_role", css_class=' col-md-4'),
+                Div("r_and_d_Project_type", css_class=' col-lg-3'),
+                Div("r_and_d_ProjectName", css_class=' col-md-3'),
+                Div("r_and_d_Project_role", css_class=' col-md-2'),
+                Div("r_and_d_Project_status", css_class=' col-md-2'),
                 Div("r_and_d_Project_tenure", css_class=' col-md-2'),
                 
                 

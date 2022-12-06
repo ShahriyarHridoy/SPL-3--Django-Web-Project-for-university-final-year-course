@@ -8,6 +8,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from users.models import *
 import datetime
+from .scrap import paperScraping
+from django.http import JsonResponse
+import json
+from users.models import Personal_info
 
 from multiprocessing import AuthenticationError
 from django.template.loader import render_to_string
@@ -138,6 +142,28 @@ def profile(request):
 #         password = forms.CharField(widget= forms.PasswordInput(
 #             attrs={'class':'input', 'placeholder':'Your password', 'id':'password1'}
 #         ))
+@login_required()
+def paper_response_json(request):
+    # personalInfoList = Personal_info.objects.all
+    # print(personalInfoList)
+    
+    current_user = request.user
+    user_email= "mukul.arahman@gmail.com"    
+    user_Name= Personal_info.objects.get(email=current_user.email).employee_name
+    print(user_Name, user_email)
+    responseP = paperScraping(user_Name, user_email)
+    # testArr= []
+    # arrValue= {
+    #     "paperLink": 1,
+    #     "paperName": 2,        
+    #     "paperType": user_Name,
+    #     "paperPublishDate": current_user.id,
+    #     "paperDescription": current_user.email,
+    # }
+    # testArr.append(arrValue)
+    # responseP= json.dumps(testArr, indent=4)
+    # print(responseP)
+    return JsonResponse(responseP, safe=False)
 
 
 @login_required()
@@ -181,6 +207,8 @@ def add_profile(request):
 
     ResearchInterestInfoFormset = formset_factory(ResearchInterestInformationForm)
     researchInterest_formset = ResearchInterestInfoFormset(request.POST if "researchInterest_info_button" in request.POST else None, prefix="researchInterest")
+
+
 
     context={
         "edu_formset": edu_formset,
@@ -576,8 +604,10 @@ def add_profile(request):
                         print("&&&&&&&&&&&&&&&&&&&&&&&")
                         R_and_D_ProjectsInformation(
                             user= request.user,
+                            r_and_d_Project_type = form.cleaned_data.get("r_and_d_Project_type"),
                             r_and_d_ProjectName = form.cleaned_data.get("r_and_d_ProjectName"),
                             r_and_d_Project_role= form.cleaned_data.get("r_and_d_Project_role"),
+                            r_and_d_Project_status = form.cleaned_data.get("r_and_d_Project_status"),
                             r_and_d_Project_tenure = form.cleaned_data.get("r_and_d_Project_tenure"),
                             
                                 

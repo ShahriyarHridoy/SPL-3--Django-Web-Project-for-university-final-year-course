@@ -139,4 +139,6 @@ function readURL1(input) {
     reader.readAsDataURL(input.files[0]);
   }
 }
+
+
 //for signature picure end

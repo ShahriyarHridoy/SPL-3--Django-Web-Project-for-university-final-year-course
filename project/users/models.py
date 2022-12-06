@@ -167,8 +167,10 @@ class OtherActivitiesInformation(models.Model):
 
 class R_and_D_ProjectsInformation(models.Model):
     user= models.ForeignKey(User, null=True, blank=True, on_delete= models.CASCADE)
+    r_and_d_Project_type = models.TextField(max_length= 100)
     r_and_d_ProjectName = models.TextField(max_length= 250)
     r_and_d_Project_role = models.TextField(max_length= 150)
+    r_and_d_Project_status= models.TextField(max_length= 50)
     r_and_d_Project_tenure= models.TextField(max_length= 50)
 
 class ThesisSupervisionInformation(models.Model):

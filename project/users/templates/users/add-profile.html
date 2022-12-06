@@ -43,6 +43,7 @@
 {% load static %}
 <script src="{% static 'users/js/main.js'%}" type="text/javascript"></script>
 <script src="{% static 'users/js/formset.js'%}" type="text/javascript"></script>
+{% comment %} <script src="{% static 'users/js/paperList.js'%}" type="text/javascript"></script> {% endcomment %}
 
 {% comment %} {% block content_plugins %}
 
@@ -85,52 +86,52 @@
             </li>
             <li>
               <a href="#step-2">Step 2<br /><small>Contract Info</small></a>
-            </li>
+            </li>            
             <li>
-              <a href="#step-3">Step 3<br /><small>Joining Info</small></a>
-            </li>
-            <li>
-              <a href="#step-4"
-                >Step 4<br /><small>Spouse and Children Info</small></a
+              <a href="#step-3"
+                >Step 3<br /><small>Spouse & Children Info</small></a
               >
             </li>
             <li>
-              <a href="#step-5">Step 5<br /><small>Education Info</small></a>
+              <a href="#step-4">Step 4<br /><small>Education Info</small></a>
             </li>
             <li>
-              <a href="#step-6">Step 6<br /><small>Traning Info</small></a>
+              <a href="#step-5">Step 5<br /><small>Joining Info</small></a>
+            </li>            
+            <li>
+              <a href="#step-6">Step 6<br /><small>Posting Info</small></a>
             </li>
             <li>
-              <a href="#step-7">Step 7<br /><small>Posting Info</small></a>
+              <a href="#step-7">Step 7<br /><small>Promotion Info</small></a>
             </li>
             <li>
-              <a href="#step-8">Step 8<br /><small>Promotion Info</small></a>
-            </li>
-            <li>
-              <a href="#step-9">Step 9<br /><small>Achievement Info</small></a>
-            </li>
+              <a href="#step-8">Step 8<br /><small>Leave/Deputation Info</small></a>
+            </li>                    
             
               {% comment %} <a href="#step-10"><br /><small></small></a> {% endcomment %}
             
           </ul>
           <ul>
             <li>
-              <a href="#step-10">Step 10<br /><small>Leave/Deputation Information</small></a>
+              <a href="#step-9">Step 9<br /><small>Traning Info</small></a>
             </li>
             <li>
-              <a href="#step-11">Step 11<br /><small>Formar/Other Service</small></a>
+              <a href="#step-10">Step 10<br /><small> Research Interest </small></a>
             </li>
             <li>
-              <a href="#step-12">Step 12<br /><small>Other Activities/Assignments</small></a>
+              <a href="#step-11">Step 11<br /><small>R & D Projects</small></a>
             </li>
             <li>
-              <a href="#step-13">Step 13<br /><small>R & D Projects</small></a>
+              <a href="#step-12">Step 12<br /><small>Achievement Info</small></a>
             </li>
             <li>
-              <a href="#step-14">Step 14<br /><small>Thesis Supervision </small></a>
+              <a href="#step-13">Step 13<br /><small>Thesis Supervision </small></a>
             </li>
             <li>
-              <a href="#step-15">Step 15<br /><small> Research Interest </small></a>
+              <a href="#step-14">Step 14<br /><small>Formar/Other Service</small></a>
+            </li>
+            <li>
+              <a href="#step-15">Step 15<br /><small>Other Activities/Assignments</small></a>
             </li>
             <li>
               <a href="#step-16"> <br/><small>All Done</small></a>
@@ -899,7 +900,7 @@
               <p class="text-center"></p>
             </div>
           </div>
-          <div id="step-3" class="">
+          <div id="step-5" class="">
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
@@ -981,28 +982,28 @@
               <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-2">
-                  <p class="text-center">WorkStation</p>
+                  <p class="text-center">Department</p>
                 </div>
                 <div class="col-md-3">
                   <input
-                    id="workStation"
-                    name="workStation"
+                    id="department"
+                    name="department"
                     type="text"
                     class="form-control"
-                    placeholder="WorkStation/ Posting Place"
+                    placeholder="Department"
                     required
                   />
                 </div>
                 <div class="col-md-2">
-                  <p class="text-center">Joining Date</p>
+                  <p class="text-center">Order No & Date</p>
                 </div>
                 <div class="col-md-3">
                   <input
-                    id="datepicker1"
-                    name="joining_date"
+                    id="order_no_date"
+                    name="order_no_date"
+                    type="text"
                     class="form-control"
-                    placeholder="your Joining Date"
-                    value=""
+                    placeholder="Order No & Date"
                     required
                   />
                 </div>
@@ -1041,32 +1042,34 @@
                 <div class="col-md-1"></div>
               </div>
 
+              
+
               <div class="row my-10" style="height: 10px"></div>
               <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-2">
-                  <p class="text-center">Department</p>
+                  <p class="text-center">WorkStation - Institute</p>
                 </div>
                 <div class="col-md-3">
                   <input
-                    id="department"
-                    name="department"
+                    id="workStation"
+                    name="workStation"
                     type="text"
                     class="form-control"
-                    placeholder="Department"
+                    placeholder="WorkStation/ Posting Place"
                     required
                   />
                 </div>
                 <div class="col-md-2">
-                  <p class="text-center">Order No & Date</p>
+                  <p class="text-center">Joining Date</p>
                 </div>
                 <div class="col-md-3">
                   <input
-                    id="order_no_date"
-                    name="order_no_date"
-                    type="text"
+                    id="datepicker1"
+                    name="joining_date"
                     class="form-control"
-                    placeholder="Order No & Date"
+                    placeholder="your Joining Date"
+                    value=""
                     required
                   />
                 </div>
@@ -1202,7 +1205,7 @@
               <p class="text-center"></p>
             </div>
           </div>
-          <div id="step-4" class="">
+          <div id="step-3" class="">
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
@@ -1306,7 +1309,7 @@
            </div>
           </div>
 
-          <div id="step-5" class="">
+          <div id="step-4" class="">
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
@@ -1418,7 +1421,7 @@
               <p class="text-center"></p>
             </div>
           </div>
-          <div id="step-6" class="">
+          <div id="step-9" class="">
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
@@ -1504,7 +1507,7 @@
               <p class="text-center"></p>
             </div>
           </div>
-          <div id="step-7" class="">
+          <div id="step-6" class="">
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
@@ -1588,7 +1591,7 @@
               <p class="text-center"></p>
             </div>
           </div>
-          <div id="step-8" class="">
+          <div id="step-7" class="">
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
@@ -1670,7 +1673,84 @@
             </div>
           </div>
           
-          <div id="step-9" class="">
+          <div id="step-12" class="">
+
+            
+
+            <!-- Modal: modalCart -->
+            <div class="modal fade bd-example-modal-lg" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <!--Header-->
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Your Achievement List</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true"></span>
+                    </button>
+                  </div>
+                  <!--Body-->
+                  <div class="modal-body">
+
+                    <table class="table table-hover" >
+                      <thead>
+                        <tr>
+                          <th>Paper Link</th>
+                          <th>Paper Type</th>
+                          <th>Paper Name</th> 
+                          <th>Publish Date</th>                         
+                          <th colspan="3">Paper Details</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody id="achivementTable">
+                        {% comment %} <tr>
+                          <th scope="row">1</th>
+                          <td>Product 1</td>
+                          <td>100$</td>
+                          <td><a><i class="fas fa-times"></i></a></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">2</th>
+                          <td>Product 2</td>
+                          <td>100$</td>
+                          <td><a><i class="fas fa-times"></i></a></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">3</th>
+                          <td>Product 3</td>
+                          <td>100$</td>
+                          <td><a><i class="fas fa-times"></i></a></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">4</th>
+                          <td>Product 4</td>
+                          <td>100$</td>
+                          <td><a><i class="fas fa-times"></i></a></td>
+                        </tr>
+                        <tr class="total">
+                          <th scope="row">5</th>
+                          <td>Total</td>
+                          <td>400$</td>
+                          <td></td>
+                        </tr> {% endcomment %}
+                      </tbody>
+                    </table>
+
+                  </div>
+                  <!--Footer-->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary">Checkout</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Modal: modalCart -->
+
+           
+            
+
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
@@ -1681,7 +1761,7 @@
                 </div>
               </div>
             </div>
-            <form class="needs-validation" method="POST" action="#step-9" enctype="multipart/form-data">
+            <form class="needs-validation" method="POST" action="#step-12" enctype="multipart/form-data">
               {% csrf_token %}
 
               <table>
@@ -1700,8 +1780,8 @@
                             
                       
                     </div>
-                    <div  class="row mb-3">
-                    <div >
+                    <div class="row mb-3">
+                    <div>
 
                       {{ achievement_formset.management_form }}
 
@@ -1723,11 +1803,41 @@
                       {% endfor %} 
                     </div>
                   </div>
-                  <div class="mt-2" id="bottom-div">
-                    <button class="btn btn-success mt-4 achievement-add-form-row" id="add-form" type="button">Add Another Form</button>
+                  <div class="row mt-2">
+                    <div class="col-md-2" id="bottom-div">
+                      <button class="btn btn-success mt-4 achievement-add-form-row" id="add-form" type="button">Add Another Form</button>
+                    </div>
+                    <div class="col-md-3">
+                      <button type="button" id="do-call" onclick="f()" class="btn btn-primary mt-4"  data-toggle="collapse" data-target="#toggleAchivement">Search Achievement</button>
+                    </div>                  
                   </div>
+                  
                 </ol>
               </table>
+              <div  id='toggleAchivement' class="collapse">    
+                <div class="justify-content-between align-items-center mb-3">
+                  <h4 class="text-center" >
+                    Search Achievement Results
+                  </h4>
+                </div>      
+                <table class="table table-hover" >
+                  {% comment %} <thead>
+                    <tr>
+                      <th>Paper Link</th>
+                      <th>Paper Type</th>
+                      <th>Paper Name</th> 
+                      <th>Publish Date</th>                         
+                      <th>Paper Details</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead> {% endcomment %}
+                  {% comment %} <ol class="container mt-3"> {% endcomment %}
+                    <tbody id="achiveTable">
+                  
+                    </tbody>                  
+                  {% comment %} </ol>                   {% endcomment %}
+                </table>              
+              </div>
 
               <div class="mt-5 text-center">
                 <button
@@ -1735,7 +1845,7 @@
                   name="achievement_info_button"
                   type="submit"
                 >
-                  Save Promotion Info
+                  Save Achievement Info
                 </button>
               </div>
             </form>
@@ -1745,7 +1855,7 @@
             </div>
           </div>
 
-          <div id="step-10" class="">
+          <div id="step-8" class="">
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
@@ -1756,7 +1866,7 @@
                 </div>
               </div>
             </div>
-            <form class="needs-validation" method="POST" action="#step-10" enctype="multipart/form-data">
+            <form class="needs-validation" method="POST" action="#step-8" enctype="multipart/form-data">
               {% csrf_token %}
 
               <table>
@@ -1827,7 +1937,7 @@
             </div>
           </div>
 
-          <div id="step-11" class="">
+          <div id="step-14" class="">
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
@@ -1909,7 +2019,7 @@
             </div>
           </div>
 
-          <div id="step-12" class="">
+          <div id="step-15" class="">
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
@@ -1991,13 +2101,13 @@
             </div>
           </div>
 
-          <div id="step-13" class="">
+          <div id="step-11" class="">
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
                 <div class="justify-content-between align-items-center mb-3">
                   <h4 class="text-center" style="background-color: darkgrey">
-                    Ongoing R & D Projects
+                    R & D Projects
                   </h4>
                 </div>
               </div>
@@ -2053,7 +2163,7 @@
             </div>
           </div>
 
-          <div id="step-14" class="">
+          <div id="step-13" class="">
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
@@ -2115,7 +2225,7 @@
             </div>
           </div>
 
-          <div id="step-15" class="">
+          <div id="step-10" class="">
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
@@ -2195,4 +2305,101 @@
   </div>
 </div>
 
+<script>
+
+  
+
+function f() {
+  {% comment %} $("#do-call").click(function () {  {% endcomment %}
+    $("#spinner-div").show();  
+    $.ajax({
+      type: 'GET',
+      url: '/json/',
+      success: function(response){
+          // maxSize = response.max
+          responseArr=JSON.parse(response) 
+          buildTable(responseArr)
+          console.log(responseArr)
+          const data = response.data
+          
+      },
+      error: function(error){
+          console.log(error)
+      },
+      complete: function () {
+        $("#spinner-div").hide(); //Request is complete so hide spinner
+      }
+  });
+  {% comment %} }); {% endcomment %}
+}
+
+{% comment %} 
+function f(){
+  var responseArr = []
+
+$.ajax({
+    type: 'GET',
+    url: '/json/',
+    success: function(response){
+        // maxSize = response.max
+        responseArr=JSON.parse(response) 
+        buildTable(responseArr)
+        console.log(responseArr)
+        const data = response.data
+        
+    },
+    error: function(error){
+        console.log(error)
+    },
+    complete: function () {
+      $("#spinner-div").hide(); //Request is complete so hide spinner
+    }
+})
+} {% endcomment %}
+
+
+
+function buildTable(data){
+
+var table = document.getElementById('achiveTable')
+
+for (var i = 0; i < data.length; i++){
+  var row = `<tr>
+          <tr>                
+            <td> # ${data[i].id}</td>               
+          </tr>
+          <tr>                
+            <td >${data[i].paperLink}</td>               
+          </tr>
+          <tr>
+            <td >${data[i].paperName}</td>                
+          </tr>
+          <tr>
+            <td >${data[i].paperType}</td>                
+          </tr>
+          <tr>
+            <td >${data[i].paperPublishDate}</td>                
+          </tr>
+          <tr>
+            <td >${data[i].paperDescription}</td>                
+          </tr>
+          <tr>
+            <td ><button class="btn btn-primary"> Add Info</button></td>                
+          </tr>
+              
+        </tr>`
+  table.innerHTML += row
+
+
+}
+}
+</script>
+
 {% endblock %}
+
+          {% comment %} <td >${data[i].paperLink}</td>
+          <td >${data[i].paperName}</td>
+          <td >${data[i].paperType}</td>
+          <td>${data[i].paperPublishDate}</td>
+          <td>${data[i].paperDescription}</td>
+          <td> <button class="btn btn-primary"> Add Info</button> </td> {% endcomment %}

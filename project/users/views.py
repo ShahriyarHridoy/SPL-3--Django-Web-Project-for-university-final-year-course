@@ -148,7 +148,7 @@ def paper_response_json(request):
     # print(personalInfoList)
     
     current_user = request.user
-    user_email= "mukul.arahman@gmail.com"    
+    user_email= current_user.email   
     user_Name= Personal_info.objects.get(email=current_user.email).employee_name
     print(user_Name, user_email)
     responseP = paperScraping(user_Name, user_email)

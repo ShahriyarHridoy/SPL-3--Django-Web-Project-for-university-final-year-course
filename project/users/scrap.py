@@ -9,10 +9,10 @@ import time
 from stem import Signal
 from stem.control import Controller
 
-def renew_tor_ip():
-    with Controller.from_port(port = 9051) as controller:
-        controller.authenticate(password="aAjkaI19!!laksjd")
-        controller.signal(Signal.NEWNYM)
+# def renew_tor_ip():
+#     with Controller.from_port(port = 9051) as controller:
+#         controller.authenticate(password="aAjkaI19!!laksjd")
+#         controller.signal(Signal.NEWNYM)
 
 def paperScraping(user_Name, user_email):
 
@@ -20,10 +20,11 @@ def paperScraping(user_Name, user_email):
     authorProfLink= ''
     preAuthorProfLink= ''
     paperCount= 0
+    profileStatus= 0
 
     jsonArr= []
 
-    payload = {'api_key': '5b5e47f7ce07f7f816f254f8b831cab0', 'url': url}
+    payload = {'api_key': '257c1db95bff34b0597bd7fd8b6101b4', 'url': url}
     response = requests.get('http://api.scraperapi.com', params=payload)
     print(response.status_code)
     if (response.status_code == 200):
@@ -50,7 +51,7 @@ def paperScraping(user_Name, user_email):
 
                     print(authorProfLink)
                     
-                    payload = {'api_key': '5b5e47f7ce07f7f816f254f8b831cab0', 'url': authorProfLink}
+                    payload = {'api_key': '257c1db95bff34b0597bd7fd8b6101b4', 'url': authorProfLink}
                     profileResponse = requests.get('http://api.scraperapi.com', params=payload)
                     # profileResponse = requests.get(authorProfLink)
                     # print(profileResponse.status_code)
@@ -69,6 +70,7 @@ def paperScraping(user_Name, user_email):
                                 # print("________________________")
                                 if (foundProfileName == user_Name):
                                     print("found")
+                                    profileStatus= 1
                                     # print(foundProfile.find_all('a', class_ ="gsc_a_at").__len__)
                                     for papers in foundProfile.find_all('a', class_ ="gsc_a_at"):
                                         # print("___________ Test 1 _____________")
@@ -88,7 +90,7 @@ def paperScraping(user_Name, user_email):
 
                                             print(paperDetailsLink)
                                             
-                                            payload = {'api_key': '5b5e47f7ce07f7f816f254f8b831cab0', 'url': paperDetailsLink}
+                                            payload = {'api_key': '257c1db95bff34b0597bd7fd8b6101b4', 'url': paperDetailsLink}
                                             paperDetailsResponse = requests.get('http://api.scraperapi.com', params=payload)
                                             # paperDetailsResponse = requests.get(paperDetailsLink)
                                             # print(paperDetailsResponse.status_code)
@@ -121,6 +123,35 @@ def paperScraping(user_Name, user_email):
                                                         pName = split1.split('">', 1)[-1]
                                                         paperName = pName.split('</a>', 1)[0]
                                                         # print(paperName)
+                                                elif(paperDetails.find_all('div', id ="gsc_oci_title")!= None):
+                                                    if(paperDetails.find('div', id ="gsc_oci_title_wrapper")!= None):
+                                                        paperNameLink= paperDetails.find('div', id ="gsc_oci_title_wrapper")
+
+                                                    else : paperNameLink= paperDetails.find_all('div', id ="gsc_oci_title")[3]
+
+                                                    
+                                                    if(paperDetails.find('div', id ="gsc_oci_merged_snippet")!= None): 
+                                                    #     pLink= []                                                    
+                                                    #     pLink.append(paperNameLink.get('href'))  
+                                                    #     print(pLink)                                         
+                                                    #     paperLink = paperLink.join(pLink)
+                                                    # else: 
+                                                        paperNameLink= paperDetails.find('div', id ="gsc_oci_merged_snippet")
+                                                        pLink= []                                                    
+                                                        pLink.append(paperNameLink.get('href'))
+                                                        paperLink = paperLink.join(pLink)
+                                                        paperLink = "https://scholar.google.com" + paperLink
+                                                    # print(paperLink)
+                                                    
+                                                    paperNameLink = str(paperNameLink)
+                                                    split1= ''
+                                                    split2= ''
+                                                    
+                                                    if(paperNameLink.find("<a")!= None):
+                                
+                                                        split1= splitLink.split('href="')[-1]                                               
+                                                        pName = split1.split('">', 1)[-1]
+                                                        paperName = pName.split('</a>', 1)[0]
                                                 
                                                 pType = paperDetails.find_all('div', class_ ="gsc_oci_field")[2].string
                                                 paperType= str(pType)
@@ -133,8 +164,10 @@ def paperScraping(user_Name, user_email):
                                                     pDescription= paperDetails.find('div', id ="gsc_oci_descr").string
                                                     paperDescription = str(pDescription)
                                                 elif(paperDetails.find_all('div', class_ ="gsh_csp") != None):
-                                                    pDescription= paperDetails.find_all('div', class_ ="gsh_csp")[0].string
-                                                    paperDescription = str(pDescription)
+                                                    gsh_size = paperDetails.find_all('div', class_ ="gsh_csp")
+                                                    if(len(gsh_size)>= 2):
+                                                        pDescription= paperDetails.find_all('div', class_ ="gsh_csp")[0].string
+                                                        paperDescription = str(pDescription)
                                                 # print(paperDescription)
                                                 
                                                 # print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%% \t")
@@ -151,8 +184,8 @@ def paperScraping(user_Name, user_email):
                                                         
                                             
                                         
-
-                        break
+                        if(profileStatus==1):
+                            break
     print("total paper = ")
     print(paperCount)
     print("\t\n\n")

@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-l7o(kg+er8jss_r_y9wamn+dflrk=$y$a30img3)p0(s5(p865
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://4a06-103-209-197-25.in.ngrok.io',]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -161,6 +161,3 @@ EMAIL_USE_TLS = True
 
 PASSWORD_RESET_TIMEOUT = 14400
 ...
-
-#Active Django-Heroku
-django_heroku.settings(locals())

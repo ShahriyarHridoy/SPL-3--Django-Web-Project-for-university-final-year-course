@@ -1,6 +1,3 @@
-from distutils.command.upload import upload
-from turtle import mode
-from unittest.util import _MAX_LENGTH
 
 # Create your models here.
 from django.db import models

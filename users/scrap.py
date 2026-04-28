@@ -6,8 +6,8 @@ import requests
 from csv import writer
 import requests
 import time
-from stem import Signal
-from stem.control import Controller
+# from stem import Signal
+# from stem.control import Controller
 
 # def renew_tor_ip():
 #     with Controller.from_port(port = 9051) as controller:
